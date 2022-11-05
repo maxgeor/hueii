@@ -1,26 +1,14 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
+@layer base {
+  @font-face {
+    font-family: 'GT-Maru';
+    src: url('/fonts/GT-Maru/GT-Maru-Light-Trial.woff2');
+    src: url('/fonts/GT-Maru/GT-Maru-Regular-Trial.woff2');
+    src: url('/fonts/GT-Maru/GT-Maru-Medium-Trial.woff2');
+    font-weight: 400;
+    font-style: normal;
   }
 }
