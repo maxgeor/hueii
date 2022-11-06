@@ -9,7 +9,7 @@ export default function RootLayout({ children }) {
         <meta name="description" content="Create your own JS themes for VSCode" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className='min-h-screen'>{children}</body>
+      <body className='min-h-screen bg-black text-white'>{children}</body>
     </html>
   );
 }

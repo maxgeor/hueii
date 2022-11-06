@@ -11,7 +11,13 @@ module.exports = {
   theme: {
     colors: {
       ...colors,
-      gray: colors.neutral,
+      // black: '#0a0a35',
+      // white: '#F1F1FF',
+      // gray: {
+      //   900: '#101448',
+      //   800: '#17195a',
+      //   500: '#787892',
+      // },
     },
     extend: {
       fontFamily: {
