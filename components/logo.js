@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function Logo() {
+export default function Logo({ size }) {
   return (
-    <svg className="h-20 w-20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className={ size === 'small' ? 'h-14z w-14' : 'h-20 w-20' } viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="40" height="40"/>
       <path d="M1.62717 10.5211C1.28079 7.22553 3.67158 4.27316 6.96713 3.92678L28.8466 1.62716C32.1422 1.28078 35.0945 3.67156 35.4409 6.96712L37.7405 28.8466C38.0869 32.1422 35.6961 35.0945 32.4006 35.4409L10.5211 37.7405C7.22554 38.0869 4.27317 35.6961 3.9268 32.4006L1.62717 10.5211Z" fill="#101448"/>
       <rect x="2.98901" y="4.34485" width="32" height="32" rx="4" transform="rotate(-6 2.98901 4.34485)" fill="#16195A"/>

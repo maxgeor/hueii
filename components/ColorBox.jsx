@@ -24,29 +24,31 @@ export default function ColorBox({ color: currentColor }) {
     // hex
   return (
     <div className='-ml-1'>
-      <input 
-        ref={picker}
-        type='color' 
-        value={color} 
-        className='hidden'
-        onChange={e => handleChange(e)}
-      />
       <div 
-        className='group flex items-center gap-x-1 bg-black hover:ring-1 hover:ring-gray-800 focus-within:ring-1 focus-within:ring-blue-500 rounded-full p-1'
+        className='group flex items-center gap-x-1 bg-black hover:ring-1 hover:ring-gray-700 focus-within:ring-1 focus-within:ring-blue-500 rounded-full p-1'
       >
-        <button 
+        <button
+          for='picker'
           style={styles}
           onClick={() => picker.current.showPicker()}
           className={`
-            h-6 w-6 border border-box border-white/20 rounded-full z-10
+            shrink-0 h-5 w-5 border border-box border-white/20 hover:border-white/70 peer:focused:border-white/70 rounded-full z-10
           `}
         ></button>
+        <input 
+          id='picker'
+          ref={picker}
+          type='color' 
+          value={color} 
+          className='hidden'
+          onChange={e => handleChange(e)}
+        />
         <input
           id='hex'
           type='text'
           value={color}
           maxLength='7'
-          className='text-sm text-trueGray-300 p-1 leading-4 bg-black rounded-r-full focus:outline-none'
+          className='text-sm text-white/82 p-1 leading-4 bg-black rounded-r-full focus:outline-none'
           onChange={e => handleChange(e)}
           onClick={e => e.target.select()}
           onFocus={e => e.target.select()}
