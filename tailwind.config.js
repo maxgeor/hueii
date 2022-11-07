@@ -11,13 +11,17 @@ module.exports = {
   theme: {
     colors: {
       ...colors,
-      // black: '#0a0a35',
-      // white: '#F1F1FF',
-      // gray: {
-      //   900: '#101448',
-      //   800: '#17195a',
-      //   500: '#787892',
-      // },
+      black: '#0C0C21',
+      white: '#E2E2F9',
+      gray: {
+        900: '#19192f',
+        800: '#20203b',
+        500: '#787892',
+      },
+      purple: {
+        900: '#101448',
+        800: '#17195a',
+      },
     },
     extend: {
       fontFamily: {
