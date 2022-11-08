@@ -28,10 +28,8 @@ export default function DashboardLayout({ children }) {
           </button>
         </div>
       </header>
-      <div className="max-w-6xl mx-auto">
-        <div className="m-5">
-          {children}
-        </div>
+      <div className="max-w-6xl mx-auto ">
+        {children}
       </div>
     </div>
   );

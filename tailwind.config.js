@@ -23,11 +23,13 @@ module.exports = {
         gray: {
           900: '#19192f',
           800: '#20203b',
+          750: '#25253e',
           500: '#787892',
         },
       },
       fontFamily: {
-        maru: 'GT-Maru, serif'
+        maru: 'GT-Maru, serif',
+        dm: 'DM Mono monospace'
       }
     },
   },

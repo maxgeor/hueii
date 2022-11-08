@@ -7,23 +7,26 @@ import { javascript } from '@codemirror/lang-javascript';
 import { tags as t } from '@lezer/highlight';
 import { GroupIcon, CodeIcon } from '@radix-ui/react-icons'
 
-import ColorBox from '../../components/ColorBox';
+import StyleGroup from '../../components/StyleGroup';
+import StyleBox from '../../components/StyleBox';
 
 export default function SandboxPage() {
   const onChange = React.useCallback((value, viewUpdate) => {
     console.log('value:', value);
   }, []);
 
+  const bg = '#272745'
+
   const myTheme = createTheme({
     theme: 'dark',
     settings: {
-      background: '#25253e',
+      background: bg,
       foreground: '#81819c',
       caret: '#fff',
       selection: '#20203b',
       selectionMatch: '#20203b',
       lineHighlight: '#8a91991a',
-      gutterBackground: '#2c2c45',
+      gutterBackground: bg,
       gutterForeground: '#8e959d66',
     },
     styles: [
@@ -49,72 +52,251 @@ export default function SandboxPage() {
   return (
     <>
     <div className='grid grid-cols-9 gap-x-5 w-full'>
-      <div className='col-span-2 flex flex-col gap-y-10 ml-1 lg:ml-0'>
-        <div className='flex flex-col gap-y-4 mt-1'>
-          <div className='flex items-center gap-x-2 -ml-0.5'>
-            <GroupIcon className='shrink-0' />
-            <h3 className='text-sm uppercase tracking-widest'>General</h3>
-          </div>
-          <section className='pl-5 border-l border-white/[15%] flex flex-col gap-y-4'>
-            <div className='flex flex-col '>
-              <h4 className='text-xs tracking-wider text-gray-500 leading-5 font-mono'>Background</h4>
-              <ColorBox color={'#ff7bb1'} />
-            </div>
-            <div className='flex flex-col '>
-              <h4 className='text-xs tracking-wider text-gray-500 leading-5 font-mono'>Background</h4>
-              <ColorBox color={'#ff7bb1'} />
-            </div>
-            <div className='flex flex-col '>
-              <h4 className='text-xs tracking-wider text-gray-500 leading-5 font-mono'>Background</h4>
-              <ColorBox color={'#ff7bb1'} />
-            </div>
-            <div className='flex flex-col '>
-              <h4 className='text-xs tracking-wider text-gray-500 leading-5 font-mono'>Background</h4>
-              <ColorBox color={'#ff7bb1'} />
-            </div>
-          </section>
-        </div>
-        <div className='flex flex-col gap-y-4 mt-2'>
-          <div className='flex items-center gap-x-2 -ml-0.5'>
-            <CodeIcon className='shrink-0' />
-            <h3 className='text-sm uppercase tracking-widest'>Code</h3>
-          </div>
-          <section className='pl-5 border-l border-white/[15%] flex flex-col gap-y-4'>
-            <div className='flex flex-col '>
-              <h4 className='text-xs tracking-wider text-gray-500 leading-5 font-mono'>Background</h4>
-              <ColorBox color={'#ff7bb1'} />
-            </div>
-            <div className='flex flex-col py-3'>
-              <div className='flex items-center pl-2.5 border-l border-white/85 h-3'>
-                <h3 className='text-xs uppercase text-white tracking-widest font-medium'>Operators</h3>
-              </div>
-              <section className='pt-4 pl-5 border-l border-white/[15%] flex flex-col gap-y-4'>
-                <div className='flex flex-col '>
-                  <h4 className='text-xs tracking-wider text-gray-500 leading-5 font-mono'>Background</h4>
-                  <ColorBox color={'#ff7bb1'} />
-                </div>
-                <div className='flex flex-col '>
-                  <h4 className='text-xs tracking-wider text-gray-500 leading-5 font-mono'>Background</h4>
-                  <ColorBox color={'#ff7bb1'} />
-                </div>
-              </section>
-            </div>
-            <div className='flex flex-col '>
-              <h4 className='text-xs tracking-wider text-gray-500 leading-5 font-mono'>Background</h4>
-              <ColorBox color={'#ff7bb1'} />
-            </div>
-          </section>
-        </div>
+      <div className='col-span-2 flex flex-col gap-y-12 pt-2'>
         
+        <StyleGroup name={'General'} icon={ <GroupIcon className='shrink-0'/> }>
+          <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
+          <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
+          <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
+        </StyleGroup>
+        <StyleGroup name={'Code'} icon={ <CodeIcon className='shrink-0'/> }>
+          <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
+          <StyleGroup name={'Operators'} isSubgroup={true}>
+            <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
+            <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
+          </StyleGroup>
+        </StyleGroup>
       </div>
-      <CodeMirror
-        value="console.log('hello world!');"
-        height="600px"
-        theme={myTheme}
-        extensions={extensions}
-        onChange={onChange}
-        className='col-span-7'
-      />
+      <div className='col-span-7 w-full border border-white/10'>
+        <div className='flex bg-gray-800'>
+          <div className="border-r border-black/30 flex justify-center items-center gap-x-2 p-2 px-4 bg-gray-800 text-gray-500 text-xs">
+            <img className='w-3 h-3 rounded-[1px]' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
+            <p>index.js</p>
+          </div>
+          <div className="border-r border-black/30 flex justify-center items-center gap-x-2 p-2 px-4 bg-gray-800 text-gray-500 text-xs">
+            <img className='w-3 h-3 rounded-[1px]' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
+            <p>index.js</p>
+          </div>
+          <div className="border-r border-black/30 flex justify-center items-center gap-x-2 p-2 px-4 bg-gray-800 text-gray-500 text-xs">
+            <img className='w-3 h-3 rounded-[1px]' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
+            <p>index.js</p>
+          </div>
+        </div>
+        {/* <div className='h-2 w-full'></div> */}
+        <CodeMirror
+          height={'100%'}
+          theme={myTheme}
+          extensions={extensions}
+          onChange={onChange}
+          className='w-full'
+          value={`(function (global, undefined) {
+  "use strict";
+  undefinedVariable = {};
+  undefinedVariable.prop = 5;
+
+  function initializeProperties(target, members) {
+    var keys = Object.keys(members);
+    var properties;
+    var i, len;
+    for (i = 0, len = keys.length; i < len; i++) {
+      var key = keys[i];
+      var enumerable = key.charCodeAt(0) !== /*_*/95;
+      var member = members[key];
+      if (member && typeof member === 'object') {
+        if (member.value !== undefined || typeof member.get === 'function' || typeof member.set === 'function') {
+          if (member.enumerable === undefined) {
+            member.enumerable = enumerable;
+          }
+          properties = properties || {};
+          properties[key] = member;
+          continue;
+        } 
+      }
+      if (!enumerable) {
+        properties = properties || {};
+        properties[key] = { value: member, enumerable: enumerable, configurable: true, writable: true }
+        continue;
+      }
+      target[key] = member;
+    }
+    if (properties) {
+      Object.defineProperties(target, properties);
+    }
+  }
+
+  (function (rootNamespace) {
+
+    // Create the rootNamespace in the global namespace
+    if (!global[rootNamespace]) {
+      global[rootNamespace] = Object.create(Object.prototype);
+    }
+
+    // Cache the rootNamespace we just created in a local variable
+    var _rootNamespace = global[rootNamespace];
+    if (!_rootNamespace.Namespace) {
+      _rootNamespace.Namespace = Object.create(Object.prototype);
+    }
+
+    function defineWithParent(parentNamespace, name, members) {
+      /// <summary locid="1">
+      /// Defines a new namespace with the specified name, under the specified parent namespace.
+      /// </summary>
+      /// <param name="parentNamespace" type="Object" locid="2">
+      /// The parent namespace which will contain the new namespace.
+      /// </param>
+      /// <param name="name" type="String" locid="3">
+      /// Name of the new namespace.
+      /// </param>
+      /// <param name="members" type="Object" locid="4">
+      /// Members in the new namespace.
+      /// </param>
+      /// <returns locid="5">
+      /// The newly defined namespace.
+      /// </returns>
+      var currentNamespace = parentNamespace,
+        namespaceFragments = name.split(".");
+
+      for (var i = 0, len = namespaceFragments.length; i < len; i++) {
+        var namespaceName = namespaceFragments[i];
+        if (!currentNamespace[namespaceName]) {
+          Object.defineProperty(currentNamespace, namespaceName, 
+            { value: {}, writable: false, enumerable: true, configurable: true }
+          );
+        }
+        currentNamespace = currentNamespace[namespaceName];
+      }
+
+      if (members) {
+        initializeProperties(currentNamespace, members);
+      }
+
+      return currentNamespace;
+    }
+
+    function define(name, members) {
+      /// <summary locid="6">
+      /// Defines a new namespace with the specified name.
+      /// </summary>
+      /// <param name="name" type="String" locid="7">
+      /// Name of the namespace.  This could be a dot-separated nested name.
+      /// </param>
+      /// <param name="members" type="Object" locid="4">
+      /// Members in the new namespace.
+      /// </param>
+      /// <returns locid="5">
+      /// The newly defined namespace.
+      /// </returns>
+      return defineWithParent(global, name, members);
+    }
+
+    // Establish members of the "WinJS.Namespace" namespace
+    Object.defineProperties(_rootNamespace.Namespace, {
+
+      defineWithParent: { value: defineWithParent, writable: true, enumerable: true },
+
+      define: { value: define, writable: true, enumerable: true }
+
+    });
+
+  })("WinJS");
+
+  (function (WinJS) {
+
+    function define(constructor, instanceMembers, staticMembers) {
+      /// <summary locid="8">
+      /// Defines a class using the given constructor and with the specified instance members.
+      /// </summary>
+      /// <param name="constructor" type="Function" locid="9">
+      /// A constructor function that will be used to instantiate this class.
+      /// </param>
+      /// <param name="instanceMembers" type="Object" locid="10">
+      /// The set of instance fields, properties and methods to be made available on the class.
+      /// </param>
+      /// <param name="staticMembers" type="Object" locid="11">
+      /// The set of static fields, properties and methods to be made available on the class.
+      /// </param>
+      /// <returns type="Function" locid="12">
+      /// The newly defined class.
+      /// </returns>
+      constructor = constructor || function () { };
+      if (instanceMembers) {
+        initializeProperties(constructor.prototype, instanceMembers);
+      }
+      if (staticMembers) {
+        initializeProperties(constructor, staticMembers);
+      }
+      return constructor;
+    }
+
+    function derive(baseClass, constructor, instanceMembers, staticMembers) {
+      /// <summary locid="13">
+      /// Uses prototypal inheritance to create a sub-class based on the supplied baseClass parameter.
+      /// </summary>
+      /// <param name="baseClass" type="Function" locid="14">
+      /// The class to inherit from.
+      /// </param>
+      /// <param name="constructor" type="Function" locid="9">
+      /// A constructor function that will be used to instantiate this class.
+      /// </param>
+      /// <param name="instanceMembers" type="Object" locid="10">
+      /// The set of instance fields, properties and methods to be made available on the class.
+      /// </param>
+      /// <param name="staticMembers" type="Object" locid="11">
+      /// The set of static fields, properties and methods to be made available on the class.
+      /// </param>
+      /// <returns type="Function" locid="12">
+      /// The newly defined class.
+      /// </returns>
+      if (baseClass) {
+        constructor = constructor || function () { };
+        var basePrototype = baseClass.prototype;
+        constructor.prototype = Object.create(basePrototype);
+        Object.defineProperty(constructor.prototype, "_super", { value: basePrototype });
+        Object.defineProperty(constructor.prototype, "constructor", { value: constructor });
+        if (instanceMembers) {
+          initializeProperties(constructor.prototype, instanceMembers);
+        }
+        if (staticMembers) {
+          initializeProperties(constructor, staticMembers);
+        }
+        return constructor;
+      } else {
+        return define(constructor, instanceMembers, staticMembers);
+      }
+    }
+
+    function mix(constructor) {
+      /// <summary locid="15">
+      /// Defines a class using the given constructor and the union of the set of instance members
+      /// specified by all the mixin objects.  The mixin parameter list can be of variable length.
+      /// </summary>
+      /// <param name="constructor" locid="9">
+      /// A constructor function that will be used to instantiate this class.
+      /// </param>
+      /// <returns locid="12">
+      /// The newly defined class.
+      /// </returns>
+      constructor = constructor || function () { };
+      var i, len;
+      for (i = 0, len = arguments.length; i < len; i++) {
+        initializeProperties(constructor.prototype, arguments[i]);
+      }
+      return constructor;
+    }
+
+    // Establish members of "WinJS.Class" namespace
+    WinJS.Namespace.define("WinJS.Class", {
+      define: define,
+      derive: derive,
+      mix: mix
+    });
+
+  })(WinJS);
+
+})(this);
+          `}
+        />
+      </div>
     </div>
     </>
   );
