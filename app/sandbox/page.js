@@ -2,9 +2,9 @@
 
 import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
+import { tags as t } from '@lezer/highlight';
 import { createTheme } from '@uiw/codemirror-themes';
 import { javascript } from '@codemirror/lang-javascript';
-import { tags as t } from '@lezer/highlight';
 import { GroupIcon, CodeIcon } from '@radix-ui/react-icons'
 
 import StyleGroup from '../../components/StyleGroup';
@@ -52,7 +52,7 @@ export default function SandboxPage() {
   return (
     <>
     <div className='relative flex flex-col-reverse md:grid grid-cols-7 lg:grid-cols-9 gap-x-6 w-full md:px-6 mt-2 md:mt-4'>
-      <div className='overflow-y-scroll shadow-xl sticky z-20 w-[calc(100vw - 100px)] md:w-full bottom-2  col-span-2 lg:col-span-2 flex flex-col gap-y-12 mx-1.5 mb-2 md:m-0 px-[18px] py-6 md:p-0 md:pt-2.5 bg-black/90 backdrop-blur h-[calc(100vh/2.5)] md:h-auto rounded-xl md:rounded-none border border-white/20 md:border-none'>
+      <div className='overflow-y-scroll shadow-xl sticky z-20 w-[calc(100vw - 100px)] md:w-full bottom-1.5 col-span-2 lg:col-span-2 flex flex-col gap-y-12 mx-1.5 mb-2 md:m-0 px-[18px] py-6 md:p-0 md:pt-2.5 bg-black/90 backdrop-blur h-[calc(100vh/2.5)] md:h-auto rounded-xl md:rounded-none border border-white/20 md:border-none'>
         <StyleGroup name={'General'} icon={ <GroupIcon className='shrink-0'/> }>
           <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
           <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
