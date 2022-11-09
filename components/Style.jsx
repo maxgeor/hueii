@@ -3,7 +3,7 @@
 import ColorBox from './ColorBox'
 import TextToggles from './TextToggles';
 
-export default function StyleBox({ 
+export default function Style({ 
   name,
   color, 
   setColor,
@@ -17,7 +17,7 @@ export default function StyleBox({
         {name}
       </h4>
       <div className='flex justify-between gap-x-2'>
-        <ColorBox color={color} />
+        <ColorBox color={color} setColor={setColor} />
         {fontable ? 
           <TextToggles bolded={bolded} italicized={italicized} /> 
         : null}

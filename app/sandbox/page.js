@@ -8,7 +8,7 @@ import { tags as t } from '@lezer/highlight';
 import { createTheme } from '@uiw/codemirror-themes';
 import { GroupIcon, CodeIcon } from '@radix-ui/react-icons'
 import StyleGroup from '../../components/StyleGroup';
-import StyleBox from '../../components/StyleBox';
+import Style from '../../components/Style';
 
 export default function SandboxPage() {
   const onChange = React.useCallback((value, viewUpdate) => {
@@ -74,15 +74,21 @@ export default function SandboxPage() {
 
   const styles = [
     { group: 'General', icon: <GroupIcon className='shrink-0'/>, isSubgroup: false, items: [
-      { name: 'Light or Dark?', color: lightOrDark, setColor: setLightOrDark, fontable: false, bolded: false, italicized: false },
-      { name: 'Background', color: background, setColor: setBackground, fontable: false, bolded: false, italicized: false },
-      { name: 'Foreground', color: foreground, setColor: setForeground, fontable: false, bolded: false, italicized: false },
-      { name: 'Caret', color: caret, setColor: setCaret, fontable: false, bolded: false, italicized: false },
-      { name: 'Selection', color: selection, setColor: setSelection, fontable: false, bolded: false, italicized: false },
-      { name: 'Selection Match', color: selectionMatch, setColor: setSelectionMatch, fontable: false, bolded: false, italicized: false },
-      { name: 'Line Highlight', color: lineHighlight, setColor: setLineHighlight, fontable: false, bolded: false, italicized: false },
-      { name: 'Gutter Background', color: gutterBackground, setColor: setGutterBackground, fontable: false, bolded: false, italicized: false },
-      { name: 'Gutter Foreground', color: gutterForeground, setColor: setGutterForeground, fontable: false, bolded: false, italicized: false }
+      { name: 'Light or Dark?', color: lightOrDark, setColor: setLightOrDark },
+      { group: 'Text', isSubgroup: true, items: [
+        { name: 'Foreground', color: foreground, setColor: setForeground },
+        { name: 'Gutter Foreground', color: gutterForeground, setColor: setGutterForeground }
+      ] },
+      { group: 'Background', isSubgroup: true, items: [
+        { name: 'Background', color: background, setColor: setBackground },
+        { name: 'Gutter Background', color: gutterBackground, setColor: setGutterBackground },
+      ] },
+      { group: 'Highlights', isSubgroup: true, items: [
+        { name: 'Line Highlight', color: lineHighlight, setColor: setLineHighlight },
+        { name: 'Selection', color: selection, setColor: setSelection },
+        { name: 'Selection Match', color: selectionMatch, setColor: setSelectionMatch },
+      ] },
+      { name: 'Caret', color: caret, setColor: setCaret },
     ] },
     { group: 'Code', icon: <CodeIcon className='shrink-0'/>, isSubgroup: false, items: [
       { name: 'Comment', color: comment, setColor: setComment, fontable: false, bolded: false, italicized: false },
@@ -121,7 +127,7 @@ export default function SandboxPage() {
         ) 
       } else {
         return (
-          <StyleBox 
+          <Style 
             key={style.name} 
             name={style.name} 
             color={style.color} 

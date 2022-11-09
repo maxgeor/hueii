@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react'
 
-export default function ColorBox({ color: currentColor }) {
+export default function ColorBox({ color, setColor }) {
   const picker = useRef(null);
-  const [color, setColor] = useState(currentColor);
 
   const handleChange = (e) => {
     let newColor = e.target.value;
@@ -12,16 +11,10 @@ export default function ColorBox({ color: currentColor }) {
     }
 
     setColor(newColor);
-    // setStyle(newColor);
   }
 
   const styles = { backgroundColor: color }
 
-  // props
-    // style (the part of the code this ColorBox changes)
-    // setStyle
-      // We need to have one file with all the state for each style
-    // hex
   return (
     <div className='-ml-1'>
       <div className='group flex items-center gap-x-1 bg-transparent hover:bg-gray-800 focus:bg-gray-800 focus-within:bg-gray-800 focus-within:ring-1 focus-within:ring-gray-700 rounded-full p-1'>
