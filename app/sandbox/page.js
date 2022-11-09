@@ -15,7 +15,7 @@ export default function SandboxPage() {
     console.log('value:', value);
   }, []);
 
-  const bg = '#272745'
+  const bg = '#191930'
 
   const myTheme = createTheme({
     theme: 'dark',
@@ -51,9 +51,8 @@ export default function SandboxPage() {
 
   return (
     <>
-    <div className='grid grid-cols-9 gap-x-5 w-full'>
-      <div className='col-span-2 flex flex-col gap-y-12 pt-2'>
-        
+    <div className='relative flex flex-col-reverse md:grid grid-cols-7 lg:grid-cols-9 gap-x-6 w-full md:px-6 mt-2 md:mt-4'>
+      <div className='overflow-y-scroll shadow-xl sticky z-20 w-[calc(100vw - 100px)] md:w-full bottom-2  col-span-2 lg:col-span-2 flex flex-col gap-y-12 mx-1.5 mb-2 md:m-0 px-[18px] py-6 md:p-0 md:pt-2.5 bg-black/90 backdrop-blur h-[calc(100vh/2.5)] md:h-auto rounded-xl md:rounded-none border border-white/20 md:border-none'>
         <StyleGroup name={'General'} icon={ <GroupIcon className='shrink-0'/> }>
           <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
           <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
@@ -67,17 +66,17 @@ export default function SandboxPage() {
           </StyleGroup>
         </StyleGroup>
       </div>
-      <div className='col-span-7 w-full border border-white/10'>
-        <div className='flex bg-gray-800'>
-          <div className="border-r border-black/30 flex justify-center items-center gap-x-2 p-2 px-4 bg-gray-800 text-gray-500 text-xs">
+      <div className='col-span-5 lg:col-span-7 w-full border border-white/10 md:rounded-t-md'>
+        <div className='flex bg-gray-850 md:rounded-t-md'>
+          <div className={`border-r border-r-black/40 border-b-white flex justify-center items-center gap-x-2 p-2 px-4 text-gray-500 text-xs rounded-tl-md`}>
             <img className='w-3 h-3 rounded-[1px]' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
             <p>index.js</p>
           </div>
-          <div className="border-r border-black/30 flex justify-center items-center gap-x-2 p-2 px-4 bg-gray-800 text-gray-500 text-xs">
+          <div className="border-r border-black/40 flex justify-center items-center gap-x-2 p-2 px-4 bg-gray-850 text-gray-500 text-xs">
             <img className='w-3 h-3 rounded-[1px]' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
             <p>index.js</p>
           </div>
-          <div className="border-r border-black/30 flex justify-center items-center gap-x-2 p-2 px-4 bg-gray-800 text-gray-500 text-xs">
+          <div className="border-r border-black/40 flex justify-center items-center gap-x-2 p-2 px-4 bg-gray-850 text-gray-500 text-xs">
             <img className='w-3 h-3 rounded-[1px]' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
             <p>index.js</p>
           </div>

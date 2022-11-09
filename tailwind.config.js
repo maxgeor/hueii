@@ -12,16 +12,20 @@ module.exports = {
     colors: {
       ...colors,
       black: '#0C0C21',
-      white: '#E2E2F9',
+      white: '#d9d9f0',
       purple: {
         900: '#101448',
         800: '#17195a',
       },
     },
     extend: {
+      screens: {
+        xl: '1211px',
+      },
       colors: {
         gray: {
           900: '#19192f',
+          850: '#191930',
           800: '#20203b',
           750: '#25253e',
           500: '#787892',

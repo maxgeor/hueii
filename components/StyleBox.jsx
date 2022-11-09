@@ -17,7 +17,9 @@ export default function StyleBox({
       </h4>
       <div className='flex justify-between gap-x-2'>
         <ColorBox color={color} />
-        {fontable ? <TextToggles bolded={bolded} italicized={italicized} /> : null}
+        {fontable ? 
+          <TextToggles bolded={bolded} italicized={italicized} /> 
+        : null}
       </div>
     </div>
   )
