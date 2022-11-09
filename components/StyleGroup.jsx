@@ -6,8 +6,8 @@ export default function StyleGroup({
 }) {
   const StyleList = ({ children: c }) => (
     <section className={`
-      pl-6 border-box border-l border-white/10 flex flex-col gap-y-5
-      ${isSubgroup ? 'pt-5' : null}
+      flex flex-col gap-y-5 border-box border-white/10
+      ${isSubgroup ? 'pt-5 pl-6 border-box border-l ' : 'md:pl-6  md:border-l'}
     `}>
       {c}
     </section>
@@ -20,7 +20,7 @@ export default function StyleGroup({
     `}>
       {isSubgroup ? (
         <>
-          <div className='flex items-center pl-3 border-box border-l border-white/85 h-3'>
+          <div className='flex items-center pl-3.5 border-box border-l border-white/85 h-3'>
             <h3 className='text-xs uppercase text-white tracking-widest'>
               {name}
             </h3>

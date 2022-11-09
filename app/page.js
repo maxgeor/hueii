@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <div className="bg-[#090a36]">
       <Navbar maxWidth={maxWidth} />
-      <div className="flex flex-col items-center gap-y-12 mb-6">
+      <div className="flex flex-col items-center gap-y-12 mb-6 ">
         <section className={`${maxWidth} flex flex-col items-center gap-y-10 max-w-lg mx-auto`}>
           <h1 className='text-5xl font-bold text-center'>Create VSCode themes, fuss-free</h1>
           <div className="flex flex-col items-center gap-y-3">

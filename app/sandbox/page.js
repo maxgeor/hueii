@@ -6,7 +6,7 @@ import { javascript } from '@codemirror/lang-javascript';
 import { useState } from 'react'
 import { tags as t } from '@lezer/highlight';
 import { createTheme } from '@uiw/codemirror-themes';
-import { GroupIcon, CodeIcon } from '@radix-ui/react-icons'
+import { GroupIcon, CodeIcon, EnterFullScreenIcon, ExitFullScreenIcon } from '@radix-ui/react-icons'
 import StyleGroup from '../../components/StyleGroup';
 import Style from '../../components/Style';
 
@@ -16,6 +16,8 @@ export default function SandboxPage() {
   }, []);
 
   const extensions = [javascript({ jsx: true })];
+
+  const [colorEditorExpanded, setcolorEditorExpanded] = useState(false);
 
   const defaultBackground                       = '#191930';
   const [lightOrDark, setLightOrDark]           = useState('dark');
@@ -143,28 +145,42 @@ export default function SandboxPage() {
 
   return (
     <>
-    <div className='relative flex flex-col-reverse md:grid grid-cols-7 lg:grid-cols-9 gap-x-6 w-full md:px-6 mt-2 md:mt-3'>
-      <div className='overflow-y-scroll shadow-xl sticky z-20 w-[calc(100vw - 100px)] md:w-full bottom-1.5 col-span-2 lg:col-span-2 flex flex-col gap-y-12 mx-1.5 mb-2 md:m-0 px-[18px] py-6 md:p-0 md:pt-2.5 bg-black/90 backdrop-blur h-[calc(100vh/2.5)] md:h-auto rounded-xl md:rounded-none border border-white/20 md:border-none'>
-        {renderStyles(styles)}
+    <div className='md:flex gap-x-12 w-full md:px-6 mt-2 md:mt-3'>
+      <div className={`
+        w-full md:w-1/3 lg:w-1/4 overflow-y-scroll shadow-xl absolute md:static bottom-1.5 z-20 p-5 md:p-0 md:pt-2.5 bg-black/90 backdrop-blur md:h-auto rounded-xl md:rounded-none border border-white/20 md:border-none
+        ${colorEditorExpanded ? 'h-full top-1.5 left-1.5 right-1.5 bottom-1.5' : 'h-[calc(100vh/3)] bottom-1.5 mx-1.5 md:mx-0'}
+      `}>
+        <div className='relative flex flex-col gap-y-12'>
+          {renderStyles(styles)}
+          <button 
+            className='md:hidden absolute top-0 right-0 p-2 rounded-full bg-gray-850 hover:bg-gray-700 text-white'
+            onClick={() => setcolorEditorExpanded(!colorEditorExpanded)}
+          >
+            {colorEditorExpanded ? <ExitFullScreenIcon /> : <EnterFullScreenIcon />}
+          </button>
+        </div>
       </div>
-      <div className='col-span-5 lg:col-span-7 w-full border border-white/10 md:rounded-t-md'>
-        <div className='flex bg-gray-850 md:rounded-t-md'>
-          <div className={`border-r border-r-black/40 border-b-white flex justify-center items-center gap-x-2 p-2 px-4 text-gray-500 text-xs rounded-tl-md`}>
+      <div className='overflow-y-scroll w-full md:w-2/3 lg:w-3/4 border border-white/10 md:rounded-md'>
+        <div 
+          style={{ backgroundColor: background, color: foreground }}
+          className='flex md:rounded-t-md'
+        >
+          <div className={`border-r border-r-black/40 border-b-white flex justify-center items-center gap-x-2 p-2 px-4 text-xs rounded-tl-md`}>
             <img className='w-3 h-3 rounded-[1px]' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
             <p>index.js</p>
           </div>
-          <div className="border-r border-black/40 flex justify-center items-center gap-x-2 p-2 px-4 bg-gray-850 text-gray-500 text-xs">
+          <div className="border-r border-black/40 flex justify-center items-center gap-x-2 p-2 px-4 text-xs">
             <img className='w-3 h-3 rounded-[1px]' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
             <p>index.js</p>
           </div>
-          <div className="border-r border-black/40 flex justify-center items-center gap-x-2 p-2 px-4 bg-gray-850 text-gray-500 text-xs">
+          <div className="border-r border-black/40 flex justify-center items-center gap-x-2 p-2 px-4 text-xs">
             <img className='w-3 h-3 rounded-[1px]' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
             <p>index.js</p>
           </div>
         </div>
 
         <CodeMirror
-          height={'100%'}
+          height={'calc(100vh - 80px)'}
           theme={theme}
           extensions={extensions}
           onChange={onChange}
