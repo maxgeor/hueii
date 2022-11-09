@@ -37,7 +37,7 @@ export default function ColorBox({ color: currentColor }) {
           htmlFor='picker'
           style={styles}
           onClick={() => picker.current.showPicker()}
-          className={`peer-focus:border-white shrink-0 h-5 w-5 border border-box border-white/25 hover:border-white hover:scale-[108%] peer:focus:scale-[108%] peer:focus:border-white/70 rounded-full z-10`}
+          className={`peer-focus:border-white shrink-0 h-5 w-5 border border-box border-white/[30%] hover:border-white hover:scale-[108%] peer:focus:scale-[108%] peer:focus:border-white/70 rounded-full z-10`}
         ></button>
         <input
           id='hex'

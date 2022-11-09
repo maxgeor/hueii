@@ -10,10 +10,10 @@ export default function DashboardLayout({ children }) {
 
   return (
     <div className='bg-black '>
-      <header className='relative flex items-center justify-between gap-x-2 p-4 py-3 md:pl-5 md:py-4 md:p-6 max-w-8xl mx-auto'>
+      <header className='relative flex items-center justify-between gap-x-2 py-3 px-4 md:pl-5 md:py-3 md:px-6 max-w-8xl mx-auto'>
         <div className='flex items-center gap-x-4 w-fit self-start '>
           <Link href='/'>
-            <div className='-ml-1 transition duration-75 transform hover:scale-[102%] active:scale-100'>
+            <div className='-ml-1 transition duration-75 transform hover:scale-[104%] active:scale-100'>
               <Logo size='small' />
             </div>
           </Link>

@@ -2,11 +2,11 @@
 
 import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
+import { useState } from 'react'
 import { tags as t } from '@lezer/highlight';
 import { createTheme } from '@uiw/codemirror-themes';
-import { javascript } from '@codemirror/lang-javascript';
 import { GroupIcon, CodeIcon } from '@radix-ui/react-icons'
-
 import StyleGroup from '../../components/StyleGroup';
 import StyleBox from '../../components/StyleBox';
 
@@ -15,56 +15,131 @@ export default function SandboxPage() {
     console.log('value:', value);
   }, []);
 
-  const bg = '#191930'
+  const extensions = [javascript({ jsx: true })];
 
-  const myTheme = createTheme({
-    theme: 'dark',
+  const defaultBackground                       = '#191930';
+  const [lightOrDark, setLightOrDark]           = useState('dark');
+  const [background, setBackground]             = useState(defaultBackground);
+  const [foreground, setForeground]             = useState('#81819c');
+  const [caret, setCaret]                       = useState('#fff');
+  const [selection, setSelection]               = useState('#20203b');
+  const [selectionMatch, setSelectionMatch]     = useState('#20203b');
+  const [lineHighlight, setLineHighlight]       = useState('#8a91991a');
+  const [gutterBackground, setGutterBackground] = useState(defaultBackground);
+  const [gutterForeground, setGutterForeground] = useState('#8e959d66');
+  const [comment, setComment]                   = useState('#787b8099');
+  const [variableName, setVariableNamet]        = useState('#0080ff');
+  const [string, setString]                     = useState('#5c6166');
+  const [number, setNumber]                     = useState('#5c6166');
+  const [bool, setBool]                         = useState('#5c6166');
+  const [nully, setNully]                       = useState('#5c6166');
+  const [keyword, setKeyword]                   = useState('#5c6166');
+  const [operator, setOperator]                 = useState('#5c6166');
+  const [className, setClassName]               = useState('#5c6166');
+  const [definition, setDefinition]             = useState('#5c6166');
+  const [typeName, setTypeName]                 = useState('#5c6166');
+  const [angleBracket, setAngleBracket]         = useState('#5c6166');
+  const [tagName, setTagName]                   = useState('#5c6166');
+  const [attributeName, setAttributeName]       = useState('#5c6166');
+  
+  const theme = createTheme({
+    theme: lightOrDark,
     settings: {
-      background: bg,
-      foreground: '#81819c',
-      caret: '#fff',
-      selection: '#20203b',
-      selectionMatch: '#20203b',
-      lineHighlight: '#8a91991a',
-      gutterBackground: bg,
-      gutterForeground: '#8e959d66',
+      background,
+      foreground,
+      caret,
+      selection,
+      selectionMatch,
+      lineHighlight,
+      gutterBackground,
+      gutterForeground,
     },
     styles: [
-      { tag: t.comment, color: '#787b8099' },
-      { tag: t.variableName, color: '#0080ff' },
-      { tag: [t.string, t.special(t.brace)], color: '#5c6166' },
-      { tag: t.number, color: '#5c6166' },
-      { tag: t.bool, color: '#5c6166' },
-      { tag: t.null, color: '#5c6166' },
-      { tag: t.keyword, color: '#5c6166' },
-      { tag: t.operator, color: '#5c6166' },
-      { tag: t.className, color: '#5c6166' },
-      { tag: t.definition(t.typeName), color: '#5c6166' },
-      { tag: t.typeName, color: '#5c6166' },
-      { tag: t.angleBracket, color: '#5c6166' },
-      { tag: t.tagName, color: '#5c6166' },
-      { tag: t.attributeName, color: '#5c6166' },
+      { tag: t.comment, color: comment },
+      { tag: t.variableName, color: variableName },
+      { tag: [t.string, t.special(t.brace)], color: string },
+      { tag: t.number, color: number },
+      { tag: t.bool, color: bool },
+      { tag: t.null, color: nully },
+      { tag: t.keyword, color: keyword },
+      { tag: t.operator, color: operator },
+      { tag: t.className, color: className },
+      { tag: t.definition(t.typeName), color: definition },
+      { tag: t.typeName, color: typeName },
+      { tag: t.angleBracket, color: angleBracket },
+      { tag: t.tagName, color: tagName },
+      { tag: t.attributeName, color: attributeName },
     ],
   });
 
-  const extensions = [javascript({ jsx: true })];
+  const styles = [
+    { group: 'General', icon: <GroupIcon className='shrink-0'/>, isSubgroup: false, items: [
+      { name: 'Light or Dark?', color: lightOrDark, setColor: setLightOrDark, fontable: false, bolded: false, italicized: false },
+      { name: 'Background', color: background, setColor: setBackground, fontable: false, bolded: false, italicized: false },
+      { name: 'Foreground', color: foreground, setColor: setForeground, fontable: false, bolded: false, italicized: false },
+      { name: 'Caret', color: caret, setColor: setCaret, fontable: false, bolded: false, italicized: false },
+      { name: 'Selection', color: selection, setColor: setSelection, fontable: false, bolded: false, italicized: false },
+      { name: 'Selection Match', color: selectionMatch, setColor: setSelectionMatch, fontable: false, bolded: false, italicized: false },
+      { name: 'Line Highlight', color: lineHighlight, setColor: setLineHighlight, fontable: false, bolded: false, italicized: false },
+      { name: 'Gutter Background', color: gutterBackground, setColor: setGutterBackground, fontable: false, bolded: false, italicized: false },
+      { name: 'Gutter Foreground', color: gutterForeground, setColor: setGutterForeground, fontable: false, bolded: false, italicized: false }
+    ] },
+    { group: 'Code', icon: <CodeIcon className='shrink-0'/>, isSubgroup: false, items: [
+      { name: 'Comment', color: comment, setColor: setComment, fontable: false, bolded: false, italicized: false },
+      { name: 'Variable Name', color: variableName, setColor: setVariableNamet, fontable: false, bolded: false, italicized: false },
+      { group: 'Data Types', icon: null, isSubgroup: true, items: [
+        { name: 'String', color: string, setColor: setString, fontable: false, bolded: false, italicized: false },
+        { name: 'Number', color: number, setColor: setNumber, fontable: false, bolded: false, italicized: false },
+        { name: 'Bool', color: bool, setColor: setBool, fontable: false, bolded: false, italicized: false },
+        { name: 'Null', color: nully, setColor: setNully, fontable: false, bolded: false, italicized: false },
+      ] },
+      { name: 'Keyword', color: keyword, setColor: setKeyword, fontable: false, bolded: false, italicized: false },
+      { name: 'Operator', color: operator, setColor: setOperator, fontable: false, bolded: false, italicized: false },
+      { name: 'Definition', color: definition, setColor: setDefinition, fontable: false, bolded: false, italicized: false },
+      { name: 'Angle Bracket', color: angleBracket, setColor: setAngleBracket, fontable: false, bolded: false, italicized: false },
+      { group: 'Names', icon: null, isSubgroup: true, items: [
+        { name: 'Class Name', color: className, setColor: setClassName, fontable: false, bolded: false, italicized: false },
+        { name: 'Type Name', color: typeName, setColor: setTypeName, fontable: false, bolded: false, italicized: false },
+        { name: 'Tag Name', color: tagName, setColor: setTagName, fontable: false, bolded: false, italicized: false },
+        { name: 'Attribute Name', color: attributeName, setColor: setAttributeName, fontable: false, bolded: false, italicized: false }
+      ] },
+    ]},
+  ];
+
+  function renderStyles(styles) {
+    return styles.map(style => {
+      if ('group' in style) {
+        return (
+          <StyleGroup 
+            key={style.group} 
+            name={style.group}
+            icon={style.icon}
+            isSubgroup={style.isSubgroup}
+          >
+            {renderStyles(style.items)}
+          </StyleGroup>
+        ) 
+      } else {
+        return (
+          <StyleBox 
+            key={style.name} 
+            name={style.name} 
+            color={style.color} 
+            setColor={style.setColor} 
+            fontable={style.fontable} 
+            bolded={style.bolded} 
+            italicized={style.italicized} 
+          />
+        )
+      }
+    })
+  }
 
   return (
     <>
-    <div className='relative flex flex-col-reverse md:grid grid-cols-7 lg:grid-cols-9 gap-x-6 w-full md:px-6 mt-2 md:mt-4'>
+    <div className='relative flex flex-col-reverse md:grid grid-cols-7 lg:grid-cols-9 gap-x-6 w-full md:px-6 mt-2 md:mt-3'>
       <div className='overflow-y-scroll shadow-xl sticky z-20 w-[calc(100vw - 100px)] md:w-full bottom-1.5 col-span-2 lg:col-span-2 flex flex-col gap-y-12 mx-1.5 mb-2 md:m-0 px-[18px] py-6 md:p-0 md:pt-2.5 bg-black/90 backdrop-blur h-[calc(100vh/2.5)] md:h-auto rounded-xl md:rounded-none border border-white/20 md:border-none'>
-        <StyleGroup name={'General'} icon={ <GroupIcon className='shrink-0'/> }>
-          <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
-          <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
-          <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
-        </StyleGroup>
-        <StyleGroup name={'Code'} icon={ <CodeIcon className='shrink-0'/> }>
-          <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
-          <StyleGroup name={'Operators'} isSubgroup={true}>
-            <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
-            <StyleBox name={'Background'} color={'#ff7bb1'} fontable={true} bolded={false} italicized={false} />
-          </StyleGroup>
-        </StyleGroup>
+        {renderStyles(styles)}
       </div>
       <div className='col-span-5 lg:col-span-7 w-full border border-white/10 md:rounded-t-md'>
         <div className='flex bg-gray-850 md:rounded-t-md'>
@@ -81,10 +156,10 @@ export default function SandboxPage() {
             <p>index.js</p>
           </div>
         </div>
-        {/* <div className='h-2 w-full'></div> */}
+
         <CodeMirror
           height={'100%'}
-          theme={myTheme}
+          theme={theme}
           extensions={extensions}
           onChange={onChange}
           className='w-full'

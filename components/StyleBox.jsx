@@ -6,6 +6,7 @@ import TextToggles from './TextToggles';
 export default function StyleBox({ 
   name,
   color, 
+  setColor,
   fontable = false, 
   bolded = false, 
   italicized = false 
