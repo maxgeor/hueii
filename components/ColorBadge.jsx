@@ -1,0 +1,36 @@
+export default function ColorBadge({ 
+  color,
+  pickerRef= null,
+  showPicker = null,
+  handleChange = null,
+  preview = false 
+}) {
+  const styles = { backgroundColor: color }
+  const classes = 'shrink-0 border border-box border-white/[25%] rounded-full z-10'
+
+  return (
+    preview ? (
+      <div className='shrink-0'>
+        <div style={styles} className={`${classes} h-3 w-3 shrink-0`}></div>
+      </div>
+    ) : (
+      <>
+        <input 
+          id='picker'
+          ref={pickerRef}
+          type='color' 
+          value={color} 
+          className='peer hidden'
+          onInput={e => handleChange(e)}
+          onChange={e => handleChange(e)}
+        />
+        <button
+          htmlFor='picker'
+          style={styles}
+          onClick={showPicker}
+          className={`${classes} h-5 w-5 peer-focus:border-white hover:border-white hover:scale-[108%] peer:focus:scale-[108%] peer:focus:border-white/70`}
+        ></button>
+      </>
+    )
+  )
+}

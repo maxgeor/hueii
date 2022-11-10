@@ -6,7 +6,7 @@ export default function Page() {
   const maxWidth = 'max-w-4xl mx-auto';
 
   return (
-    <div className="bg-[#090a36]">
+    <div className="bg-[#090a36] min-h-screen">
       <Navbar maxWidth={maxWidth} />
       <div className="flex flex-col items-center gap-y-12 mb-6 ">
         <section className={`${maxWidth} flex flex-col items-center gap-y-10 max-w-lg mx-auto`}>
@@ -21,12 +21,9 @@ export default function Page() {
           </div>
         </section>
         <section>
-          {/* <div className="w-[50rem] border-[10px] border-purple-800 bg-purple-900 h-40 rounded-[1.5rem] shadow-inner">
-            lknvls
-          </div> */}
           <div className="border-b-[10px] border-purple-900 rounded-[2.5rem]">
             <div className="w-[50rem] border-[10px] border-purple-800 bg-purple-900 h-40 rounded-[1.5rem] shadow-inner">
-              lknvls
+              Code
             </div>
           </div>
         </section>

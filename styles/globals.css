@@ -13,3 +13,9 @@
     font-style: normal;
   }
 }
+
+@layer components {
+  .cm-scroller {
+    @apply font-maru;
+  }
+}

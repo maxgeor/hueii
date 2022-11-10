@@ -1,6 +1,6 @@
 'use client'
 
-import ColorBox from './ColorBox'
+import ColorField from './ColorField'
 import TextToggles from './TextToggles';
 
 export default function Style({ 
@@ -17,7 +17,7 @@ export default function Style({
         {name}
       </h4>
       <div className='flex justify-between gap-x-2'>
-        <ColorBox color={color} setColor={setColor} />
+        <ColorField color={color} setColor={setColor} />
         {fontable ? 
           <TextToggles bolded={bolded} italicized={italicized} /> 
         : null}

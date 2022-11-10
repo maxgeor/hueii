@@ -3,13 +3,10 @@
 import Link from 'next/link';
 import Logo from '../../components/logo'
 import { QuestionMarkCircledIcon, UploadIcon } from '@radix-ui/react-icons'
-import React, { useState } from 'react'
 
 export default function DashboardLayout({ children }) {
-  const [open, setOpen] = useState(false)
-
   return (
-    <div className='relative bg-black pb-12 h-screen overflow-hidden'>
+    <div className='relative bg-black md:pb-12'>
       <header className='relative flex items-center justify-between gap-x-2 py-3 px-4 md:pl-[18px] md:py-3 md:px-6 max-w-8xl mx-auto'>
         <div className='flex items-center gap-x-4 w-fit self-start '>
           <Link href='/'>
