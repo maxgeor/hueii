@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { tags as t } from '@lezer/highlight';
 import { createTheme } from '@uiw/codemirror-themes';
 import { GroupIcon, CodeIcon, EnterFullScreenIcon, ExitFullScreenIcon } from '@radix-ui/react-icons'
+import { WindowIcon, RectangleGroupIcon, CodeBracketIcon, CodeBracketSquareIcon } from '@heroicons/react/24/outline'
 import StyleGroup from '../../components/StyleGroup';
 import Style from '../../components/Style';
 
@@ -84,7 +85,7 @@ export default function SandboxPage() {
   });
 
   const styles = [
-    { group: 'General', icon: <GroupIcon className='shrink-0'/>, isSubgroup: false, items: [
+    { group: 'General', icon: <RectangleGroupIcon className='h-8 w-8 shrink-0'/>, isSubgroup: false, items: [
       { group: 'Text', isSubgroup: true, items: [
         { name: 'Foreground', color: foreground, setColor: setForeground },
         { name: 'Gutter Foreground', color: gutterForeground, setColor: setGutterForeground }
@@ -101,7 +102,7 @@ export default function SandboxPage() {
       { name: 'Light or Dark?', color: lightOrDark, setColor: setLightOrDark },
       { name: 'Caret', color: caret, setColor: setCaret },
     ] },
-    { group: 'Code', icon: <CodeIcon className='shrink-0'/>, isSubgroup: false, items: [
+    { group: 'Code', icon: <CodeBracketSquareIcon className='h-8 w-8 shrink-0'/>, isSubgroup: false, items: [
       { group: 'Data Types', icon: null, isSubgroup: true, items: [
         { name: 'String', color: string, setColor: setString, fontable: false, bolded: false, italicized: false },
         { name: 'Number', color: number, setColor: setNumber, fontable: false, bolded: false, italicized: false },
@@ -158,7 +159,7 @@ export default function SandboxPage() {
     <>
     <div className='relative md:flex gap-x-12 w-full md:px-6 mt-2 md:mt-3'>
       <div className={`
-        md:w-1/3 lg:w-1/4 overflow-y-scroll shadow-xl absolute md:static bottom-1.5 z-20 p-5 md:p-0 md:pt-2.5 bg-black/90 backdrop-blur md:h-auto rounded-xl md:rounded-none border border-white/20 md:border-none
+        md:w-1/3 lg:w-1/4 overflow-y-scroll shadow-xl absolute md:static bottom-1.5 z-20 p-5 md:p-0 md:pt-2.5 bg-black/90 backdrop-blur md:h-auto rounded-xl md:rounded-none border-2 border-white/20 md:border-none
         ${colorEditorExpanded ? 'h-full top-1.5 left-1.5 right-1.5 bottom-1.5' : 'h-[calc(100vh/3)] bottom-1.5 left-1.5 right-1.5'}
       `}>
         <div className='relative flex flex-col gap-y-12'>
@@ -171,10 +172,10 @@ export default function SandboxPage() {
           </button>
         </div>
       </div>
-      <div className='overflow-y-scroll w-full md:w-2/3 lg:w-3/4 border border-white/10 md:rounded-md'>
+      <div className='overflow-y-scroll w-full md:w-2/3 lg:w-3/4 border-2 border-white/10 md:rounded-md'>
         <div 
           style={{ backgroundColor: background, color: foreground }}
-          className='text-xs flex md:rounded-t-md'
+          className='text-sm flex md:rounded-t-md'
         >
           <div className={`border-r border-r-black/40 border-b-white flex justify-center items-center gap-x-2 p-2 px-4  rounded-tl-md`}>
             <img className='w-3 h-3 rounded-[1px]' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
@@ -196,7 +197,7 @@ export default function SandboxPage() {
             theme={theme}
             extensions={extensions}
             onChange={onChange}
-            className='w-full font-mono'
+            className='w-full font-mono text-sm'
             value={`(function (global, undefined) {
     "use strict";
     undefinedVariable = {};
