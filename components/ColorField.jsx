@@ -17,8 +17,8 @@ export default function ColorField({ color, setColor }) {
   }
 
   return (
-    <div className='-ml-1'>
-      <div className='group flex items-center gap-x-1 w-fit bg-transparent hover:bg-gray-800 focus:bg-gray-800 focus-within:bg-gray-800 focus-within:ring-1 focus-within:ring-gray-700 rounded-full p-1'>
+    <div className='-ml-1 -mb-1'>
+      <div className='group flex items-center gap-x-1 w-fit bg-transparent hover:bg-gray-800 focus:bg-gray-800 focus-within:bg-gray-800 focus-within:ring-1 focus-within:ring-gray-600 rounded-full p-1'>
         <ColorBadge 
           color={color} 
           pickerRef={picker}

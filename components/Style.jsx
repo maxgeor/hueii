@@ -9,11 +9,12 @@ export default function Style({
   setColor,
   fontable = false, 
   bolded = false, 
-  italicized = false 
+  italicized = false,
+  first
 }) {
   return (
     <div className='flex flex-col'>
-      <h4 className='text-xs tracking-wider text-gray-500 leading-5 font-mono'>
+      <h4 className={`${first ? '-mt-1' : null} text-xs tracking-wide text-gray-500 leading-5 font-mono`}>
         {name}
       </h4>
       <div className='flex justify-between gap-x-2'>

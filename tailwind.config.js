@@ -29,14 +29,21 @@ module.exports = {
           850: '#191930',
           800: '#20203b',
           750: '#25253e',
-          500: '#797991',
+          600: '#444461',
+          500: '#787894',
           100: '#c4c5dc'
         },
       },
       fontFamily: {
         maru: 'GT-Maru, serif',
         dm: 'DM Mono monospace'
-      }
+      },
+      padding: {
+        4.5: '1.125rem',
+      },
+      margin: {
+        4.5: '1.125rem',
+      },
     },
   },
   plugins: [],

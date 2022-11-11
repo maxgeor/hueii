@@ -37,11 +37,9 @@ export default function SandboxPage() {
   const [selectionMatch, setSelectionMatch]     = useState('#28283e');
   const [lineHighlight, setLineHighlight]       = useState('#8a91991a');
   const [gutterBackground, setGutterBackground] = useState(black);
-  // #cecb7e
   const [gutterForeground, setGutterForeground] = useState('#3A3A54');
   const [comment, setComment]                   = useState('#45455f');
-  const [variableName, setVariableName]        = useState(teal);
-  // const [variableName, setVariableName]        = useState('#78ba9e');
+  const [variableName, setVariableName]         = useState(teal);
   const [string, setString]                     = useState(green);
   const [number, setNumber]                     = useState('#D4629A');
   const [bool, setBool]                         = useState('#D4629A');
@@ -87,7 +85,6 @@ export default function SandboxPage() {
 
   const styles = [
     { group: 'General', icon: <GroupIcon className='shrink-0'/>, isSubgroup: false, items: [
-      { name: 'Light or Dark?', color: lightOrDark, setColor: setLightOrDark },
       { group: 'Text', isSubgroup: true, items: [
         { name: 'Foreground', color: foreground, setColor: setForeground },
         { name: 'Gutter Foreground', color: gutterForeground, setColor: setGutterForeground }
@@ -101,32 +98,33 @@ export default function SandboxPage() {
         { name: 'Selection', color: selection, setColor: setSelection },
         { name: 'Selection Match', color: selectionMatch, setColor: setSelectionMatch },
       ] },
+      { name: 'Light or Dark?', color: lightOrDark, setColor: setLightOrDark },
       { name: 'Caret', color: caret, setColor: setCaret },
     ] },
     { group: 'Code', icon: <CodeIcon className='shrink-0'/>, isSubgroup: false, items: [
-      { name: 'Comment', color: comment, setColor: setComment, fontable: false, bolded: false, italicized: false },
-      { name: 'Variable Name', color: variableName, setColor: setVariableName, fontable: false, bolded: false, italicized: false },
       { group: 'Data Types', icon: null, isSubgroup: true, items: [
         { name: 'String', color: string, setColor: setString, fontable: false, bolded: false, italicized: false },
         { name: 'Number', color: number, setColor: setNumber, fontable: false, bolded: false, italicized: false },
-        { name: 'Bool', color: bool, setColor: setBool, fontable: false, bolded: false, italicized: false },
+        { name: 'Boolean', color: bool, setColor: setBool, fontable: false, bolded: false, italicized: false },
         { name: 'Null', color: nully, setColor: setNully, fontable: false, bolded: false, italicized: false },
       ] },
-      { name: 'Keyword', color: keyword, setColor: setKeyword, fontable: false, bolded: false, italicized: false },
-      { name: 'Operator', color: operator, setColor: setOperator, fontable: false, bolded: false, italicized: false },
-      { name: 'Definition', color: definition, setColor: setDefinition, fontable: false, bolded: false, italicized: false },
-      { name: 'Angle Bracket', color: angleBracket, setColor: setAngleBracket, fontable: false, bolded: false, italicized: false },
       { group: 'Names', icon: null, isSubgroup: true, items: [
         { name: 'Class Name', color: className, setColor: setClassName, fontable: false, bolded: false, italicized: false },
         { name: 'Type Name', color: typeName, setColor: setTypeName, fontable: false, bolded: false, italicized: false },
         { name: 'Tag Name', color: tagName, setColor: setTagName, fontable: false, bolded: false, italicized: false },
         { name: 'Attribute Name', color: attributeName, setColor: setAttributeName, fontable: false, bolded: false, italicized: false }
       ] },
+      { name: 'Variables', color: variableName, setColor: setVariableName, fontable: false, bolded: false, italicized: false },
+      { name: 'Keyword', color: keyword, setColor: setKeyword, fontable: false, bolded: false, italicized: false },
+      { name: 'Operator', color: operator, setColor: setOperator, fontable: false, bolded: false, italicized: false },
+      { name: 'Comment', color: comment, setColor: setComment, fontable: false, bolded: false, italicized: false },
+      { name: 'Angle Bracket', color: angleBracket, setColor: setAngleBracket, fontable: false, bolded: false, italicized: false },
+      { name: 'Definition', color: definition, setColor: setDefinition, fontable: false, bolded: false, italicized: false },
     ]},
   ];
 
   function renderStyles(styles) {
-    return styles.map(style => {
+    return styles.map((style, index) => {
       if ('group' in style) {
         return (
           <StyleGroup 
@@ -134,6 +132,7 @@ export default function SandboxPage() {
             name={style.group}
             icon={style.icon}
             isSubgroup={style.isSubgroup}
+            first={index === 0}
           >
             {renderStyles(style.items)}
           </StyleGroup>
@@ -148,6 +147,7 @@ export default function SandboxPage() {
             fontable={style.fontable} 
             bolded={style.bolded} 
             italicized={style.italicized} 
+            first={index === 0}
           />
         )
       }
@@ -174,7 +174,7 @@ export default function SandboxPage() {
       <div className='overflow-y-scroll w-full md:w-2/3 lg:w-3/4 border border-white/10 md:rounded-md'>
         <div 
           style={{ backgroundColor: background, color: foreground }}
-          className='flex text-sm md:rounded-t-md'
+          className='text-xs flex md:rounded-t-md'
         >
           <div className={`border-r border-r-black/40 border-b-white flex justify-center items-center gap-x-2 p-2 px-4  rounded-tl-md`}>
             <img className='w-3 h-3 rounded-[1px]' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
@@ -196,7 +196,7 @@ export default function SandboxPage() {
             theme={theme}
             extensions={extensions}
             onChange={onChange}
-            className='w-full text-sm font-mono'
+            className='w-full font-mono'
             value={`(function (global, undefined) {
     "use strict";
     undefinedVariable = {};
