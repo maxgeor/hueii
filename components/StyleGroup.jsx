@@ -27,17 +27,17 @@ export default function StyleGroup({
             className='group overflow-visible flex justify-between items-center p-2 pl-3 hover:bg-gray-800 focus:bg-gray-800 focus:ring-1 focus:ring-gray-600 focus:outline-none rounded-full -mt-2 -ml-3 -mb-2'
             onClick={() => setOpen(!open)}
           >
-            <div className="flex items-center gap-x-3 w-full h-3">
-              <h3 className='text-xs uppercase text-white font-light tracking-widest whitespace-nowrap'>
+            <div className="flex items-center gap-x-2.5 w-full">
+              <h3 className='text-xs leading-4 uppercase text-white font-light tracking-widest whitespace-nowrap'>
                 {name}
               </h3>
               {open ? null : (
                 <div className='flex gap-x-1'>
-                  {children.slice(0, 3).map(c => <ColorBadge key={c.props.name} color={c.props.color} preview={true} />)}
+                  {children.map(c => <ColorBadge key={c.props.name} color={c.props.color} preview={true} />)}
                 </div>
               )}
             </div>
-            {open ? <ChevronUpIcon className='shrink-0' /> : <ChevronDownIcon className='shrink-0' />}
+            {open ? <ChevronUpIcon className='shrink-0 -mb-px' /> : <ChevronDownIcon className='shrink-0 -mt-px' />}
           </button>
           <div>
             {open ? <StyleList>{children}</StyleList> : null}

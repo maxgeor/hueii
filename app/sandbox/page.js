@@ -37,7 +37,7 @@ export default function SandboxPage() {
   const [selectionMatch, setSelectionMatch]     = useState('#28283e');
   const [lineHighlight, setLineHighlight]       = useState('#8a91991a');
   const [gutterBackground, setGutterBackground] = useState(black);
-  const [gutterForeground, setGutterForeground] = useState('#3A3A54');
+  const [gutterForeground, setGutterForeground] = useState('#464658');
   const [comment, setComment]                   = useState('#45455f');
   const [variableName, setVariableName]         = useState(teal);
   const [string, setString]                     = useState(green);
