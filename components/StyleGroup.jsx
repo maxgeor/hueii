@@ -1,6 +1,7 @@
 import { useState } from "react"
 import ColorBadge from "./ColorBadge";
-import { ChevronUpIcon, ChevronDownIcon } from "@radix-ui/react-icons";
+// import { ChevronUpIcon, ChevronDownIcon } from "@radix-ui/react-icons";
+import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid'
 
 export default function StyleGroup({
   name,
@@ -28,7 +29,7 @@ export default function StyleGroup({
             onClick={() => setOpen(!open)}
           >
             <div className="flex items-center gap-x-2.5 w-full">
-              <h3 className='text-xs leading-4 uppercase text-white font-light tracking-widest whitespace-nowrap'>
+              <h3 className='text-white font-semibold whitespace-nowrap'>
                 {name}
               </h3>
               {open ? null : (
@@ -37,7 +38,7 @@ export default function StyleGroup({
                 </div>
               )}
             </div>
-            {open ? <ChevronUpIcon className='shrink-0 -mb-px' /> : <ChevronDownIcon className='shrink-0 -mt-px' />}
+            {open ? <ChevronUpIcon className='h-5 w-5 shrink-0 -mb-px' /> : <ChevronDownIcon className=' h-5 w-5 shrink-0 -mt-px' />}
           </button>
           <div>
             {open ? <StyleList>{children}</StyleList> : null}
@@ -47,7 +48,7 @@ export default function StyleGroup({
         <>
           <div className='flex items-center gap-x-[10px] -ml-px'>
             {icon}
-            <h3 className='text-sm uppercase tracking-widest whitespace-nowrap'>
+            <h3 className='text-lg tracking-wider text-white font-bold whitespace-nowrap'>
               {name}
             </h3>
           </div>

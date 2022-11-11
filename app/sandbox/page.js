@@ -7,7 +7,8 @@ import { useState } from 'react'
 import { tags as t } from '@lezer/highlight';
 import { createTheme } from '@uiw/codemirror-themes';
 import { GroupIcon, CodeIcon, EnterFullScreenIcon, ExitFullScreenIcon } from '@radix-ui/react-icons'
-import { WindowIcon, RectangleGroupIcon, CodeBracketIcon, CodeBracketSquareIcon } from '@heroicons/react/24/outline'
+// import { WindowIcon, RectangleGroupIcon, CodeBracketIcon, CodeBracketSquareIcon } from '@heroicons/react/24/outline'
+import { WindowIcon, RectangleGroupIcon, CodeBracketIcon, CodeBracketSquareIcon } from '@heroicons/react/24/solid'
 import StyleGroup from '../../components/StyleGroup';
 import Style from '../../components/Style';
 
@@ -85,7 +86,7 @@ export default function SandboxPage() {
   });
 
   const styles = [
-    { group: 'General', icon: <RectangleGroupIcon className='h-8 w-8 shrink-0'/>, isSubgroup: false, items: [
+    { group: 'General', icon: <RectangleGroupIcon className='h-7 w-7 shrink-0'/>, isSubgroup: false, items: [
       { group: 'Text', isSubgroup: true, items: [
         { name: 'Foreground', color: foreground, setColor: setForeground },
         { name: 'Gutter Foreground', color: gutterForeground, setColor: setGutterForeground }
@@ -102,7 +103,7 @@ export default function SandboxPage() {
       { name: 'Light or Dark?', color: lightOrDark, setColor: setLightOrDark },
       { name: 'Caret', color: caret, setColor: setCaret },
     ] },
-    { group: 'Code', icon: <CodeBracketSquareIcon className='h-8 w-8 shrink-0'/>, isSubgroup: false, items: [
+    { group: 'Code', icon: <CodeBracketSquareIcon className='h-7 w-7 shrink-0'/>, isSubgroup: false, items: [
       { group: 'Data Types', icon: null, isSubgroup: true, items: [
         { name: 'String', color: string, setColor: setString, fontable: false, bolded: false, italicized: false },
         { name: 'Number', color: number, setColor: setNumber, fontable: false, bolded: false, italicized: false },
