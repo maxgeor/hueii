@@ -11,8 +11,8 @@ module.exports = {
   theme: {
     colors: {
       ...colors,
-      black: '#0C0C21',
-      white: '#d9d9f0',
+      black: '#18181C',
+      white: '#DFDFEF',
       purple: {
         900: '#101448',
         800: '#17195a',
@@ -30,7 +30,7 @@ module.exports = {
           800: '#20203b',
           750: '#25253e',
           600: '#444461',
-          500: '#787894',
+          500: '#81819D',
           100: '#c4c5dc'
         },
       },
@@ -44,6 +44,12 @@ module.exports = {
       margin: {
         4.5: '1.125rem',
       },
+      transitionProperty: {
+        'spacing': 'margin, padding',
+      },
+      boxShadow: {
+        '2xl-dark': 'box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);'
+      }
     },
   },
   plugins: [],

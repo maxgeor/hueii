@@ -29,7 +29,7 @@ export default function ColorField({ color, setColor }) {
           id='hex'
           type='text'
           value={color.toUpperCase()}
-          className='w-fit text-sm text-gray-100 pl-1 leading-5 bg-inherit rounded-r-full focus:outline-none'
+          className='w-20 truncate text-sm text-gray-100 pl-1 leading-5 bg-inherit rounded-r-full focus:outline-none'
           onPaste={e => handleChange(e)}
           onChange={e => handleChange(e)}
           onClick={e => e.target.select()}
