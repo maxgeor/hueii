@@ -86,11 +86,11 @@ export default function SandboxPage() {
   const styles = [
     { group: 'General', icon: <GroupIcon className='shrink-0'/>, isSubgroup: false, items: [
       { group: 'Text', isSubgroup: true, items: [
-        { name: 'Foreground', color: foreground, setColor: setForeground },
-        { name: 'Gutter Foreground', color: gutterForeground, setColor: setGutterForeground }
+        { name: 'Editor Text', color: foreground, setColor: setForeground },
+        { name: 'Gutter Text', color: gutterForeground, setColor: setGutterForeground }
       ] },
       { group: 'Background', isSubgroup: true, items: [
-        { name: 'Background', color: background, setColor: setBackground },
+        { name: 'Editor Background', color: background, setColor: setBackground },
         { name: 'Gutter Background', color: gutterBackground, setColor: setGutterBackground },
       ] },
       { group: 'Highlights', isSubgroup: true, items: [

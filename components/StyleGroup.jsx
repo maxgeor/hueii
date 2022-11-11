@@ -12,7 +12,7 @@ export default function StyleGroup({
 
   const StyleList = ({ children: c }) => (
     <section className={`
-      flex flex-col space-y-6 border-box border-white/[13%]
+      flex flex-col gap-y-5 border-white/[13%]
       ${isSubgroup ? 'mt-5 pl-6 border-box border-l' : 'md:pl-6 md:border-l'}
     `}>
       {c}
@@ -20,9 +20,9 @@ export default function StyleGroup({
   )
 
   return (
-    <div className={`flex flex-col space-y-6`}>
+    <div className='flex flex-col gap-y-5'>
       {isSubgroup ? (
-        <div className='flex flex-col my-0.5'>
+        <div className={`flex flex-col ${open? 'my-2' : 'my-0.5'} transition-all ease-out duration-200`}>
           <button 
             className='group overflow-visible flex justify-between items-center p-2 pl-3 hover:bg-gray-800 focus:bg-gray-800 focus:ring-1 focus:ring-gray-600 focus:outline-none rounded-full -mt-2 -ml-3 -mb-2'
             onClick={() => setOpen(!open)}

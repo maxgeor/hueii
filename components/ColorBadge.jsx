@@ -6,7 +6,7 @@ export default function ColorBadge({
   preview = false 
 }) {
   const styles = { backgroundColor: color }
-  const classes = 'shrink-0 border border-box border-white/[25%] rounded-full z-10'
+  const classes = 'shrink-0 border border-box border-white/[30%] rounded-full z-10'
 
   return (
     preview ? (
