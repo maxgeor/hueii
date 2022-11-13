@@ -7,7 +7,6 @@ import { createTheme } from '@uiw/codemirror-themes';
 import { GroupIcon, CodeIcon, LetterCaseCapitalizeIcon, LetterCaseLowercaseIcon, TextIcon } from '@radix-ui/react-icons'
 import StyleEditor from '../../components/StyleEditor';
 import CodeEditor from '../../components/CodeEditor';
-import ColorPicker from '../../components/ColorPicker';
 
 export default function SandboxPage() {
   const white = '#C7C7FF'
@@ -116,10 +115,7 @@ export default function SandboxPage() {
 
   return (
     <>
-    <div className='min-h-screen relative md:flex gap-x-12 w-full md:px-6 mt-2 md:mt-3'>
-      {/* <div className='max-w-md mx-auto'>
-        <ColorPicker color={'#000'} />
-      </div> */}
+    <div className='min-h-screen relative md:flex gap-x-12 lg:gap-x-16 w-full md:px-6 mt-2 md:mt-3 max-w-6xl mx-auto'>
       <StyleEditor 
         styles={styles} 
         width={'md:w-1/3 lg:w-1/4'} 

@@ -14,7 +14,7 @@ export default function StyleGroup({
 
   const StyleList = ({ children: c }) => (
     <section className={`
-      flex flex-col border-white/[9%]
+      flex flex-col border-white/[8%]
       ${isSubgroup ? 'pl-2 ml-4 border-box border-l' : 'md:pl-2 ml-px md:border-l'}
     `}>
       {c}
@@ -25,13 +25,13 @@ export default function StyleGroup({
     <div className='oveflow-visible flex flex-col'>
       {isSubgroup ? (
         <div className={`
-          flex flex-col transition-all ease-out duration-200
+          flex flex-col transition-all ease-out duration-300
           ${open? 'my-2' : null}
         `}>
           <button 
             className={`
-              group flex justify-between items-center w-full rounded-full
-              text-gray-100 hover:text-white focus:text-white md:bg-black hover:bg-gray-750 active:bg-gray-750 border border-transparent focus:border-gray-600 h-10 border-box md:focus:bg-gray-750 focus:outline-none 
+              group flex justify-between items-center w-full rounded-full transition ease-in-out duration-75
+              text-gray-100 hover:text-white focus:text-white md:bg-black hover:bg-gray-750 focus:bg-gray-750 active:bg-gray-750 border border-transparent focus:border-gray-600 h-10 border-box focus:outline-none 
               py-2.5 px-4 -ml-px
             `}
             onClick={() => setOpen(!open)}
@@ -48,7 +48,7 @@ export default function StyleGroup({
                   {children.map(c => <ColorBadge key={c.props.name} color={c.props.color} preview={true} />)}
                 </div>
               )}
-              {open ? <ChevronUpIcon className='shrink-0 -mb-px' /> : <ChevronDownIcon className='shrink-0 -mt-px' />}
+              <ChevronDownIcon className={`${open ? '-rotate-180' : 'rotate-0'} transform shrink-0 -mt-px transition ease-out duration-300`} />
             </div>
           </button>
           {open ? <StyleList>{children}</StyleList> : null}

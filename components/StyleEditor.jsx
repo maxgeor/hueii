@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react'
 import StyleList from './StyleList';
-import ColorPicker from './ColorPicker';
 
 export default function StyleEditor({ styles, width }) {
   const [colorListExpanded, setColorListExpanded] = useState(false);
@@ -20,7 +19,6 @@ export default function StyleEditor({ styles, width }) {
         colorListExpanded={colorListExpanded}
         setColorListExpanded={setColorListExpanded}
       />
-      {/* <ColorPicker /> */}
     </section>
   )
 }
