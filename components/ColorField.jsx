@@ -17,6 +17,7 @@ export default function ColorField({ color: currentColor, setColor }) {
     // }
     // setColor(newColor);
     setColor(color.hex);
+    // 
   }
 
   return (
