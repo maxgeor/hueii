@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react"
 import ColorBadge from "./ColorBadge";
 import { ChevronUpIcon, ChevronDownIcon } from "@radix-ui/react-icons";
@@ -12,29 +14,32 @@ export default function StyleGroup({
 
   const StyleList = ({ children: c }) => (
     <section className={`
-      flex flex-col gap-y-6 border-white/[7%]
-      ${isSubgroup ? 'mt-6 pl-6 border-box border-l' : 'md:pl-6 md:border-l'}
+      flex flex-col border-white/[9%]
+      ${isSubgroup ? 'pl-2 ml-4 border-box border-l' : 'md:pl-2 ml-px md:border-l'}
     `}>
       {c}
     </section>
   )
 
   return (
-    <div className='oveflow-visible flex flex-col gap-y-6'>
+    <div className='oveflow-visible flex flex-col'>
       {isSubgroup ? (
-        <div className={`flex flex-col ${open? 'my-2' : 'my-0.5'} transition-all ease-out duration-200`}>
+        <div className={`
+          flex flex-col transition-all ease-out duration-200
+          ${open? 'my-2' : null}
+        `}>
           <button 
             className={`
-              ${open ? '-mb-3.5 md:-my-2.5' : 'bg-gray-800/40'} 
-              group flex justify-between items-center w-full md:bg-black hover:bg-gray-800 active:bg-gray-800 focus:ring-1 md:focus:bg-gray-800 focus:ring-gray-600 focus:outline-none rounded-full
-              p-3 -mx-3 -my-2.5 md:p-2 md:pl-3 md:-ml-3 md:mr-0
+              group flex justify-between items-center w-full rounded-full
+              text-gray-100 hover:text-white focus:text-white md:bg-black hover:bg-gray-750 active:bg-gray-750 border border-transparent focus:border-gray-600 h-10 border-box md:focus:bg-gray-750 focus:outline-none 
+              py-2.5 px-4 -ml-px
             `}
             onClick={() => setOpen(!open)}
           >
-            <h3 className='text-xs leading-4 uppercase text-white font-light tracking-widest whitespace-nowrap'>
+            <h3 className='text-xs leading-6 uppercase font-light tracking-widest whitespace-nowrap'>
               {name}
             </h3>
-            <div className="flex justify-end items-center gap-x-2.5">
+            <div className="flex justify-end items-center gap-x-2.5 -mr-[5px]">
               {open ? null : (
                 <div className={`
                   flex transition-all duration-100 
@@ -46,21 +51,19 @@ export default function StyleGroup({
               {open ? <ChevronUpIcon className='shrink-0 -mb-px' /> : <ChevronDownIcon className='shrink-0 -mt-px' />}
             </div>
           </button>
-          <div>
-            {open ? <StyleList>{children}</StyleList> : null}
-          </div>
+          {open ? <StyleList>{children}</StyleList> : null}
         </div>
       ) : (
         <>
-          <div className='absolute md:static -top-6 transform left-1/2 -translate-x-1/2 md:translate-x-0 flex items-center gap-x-[10px] -ml-px'>
+          <div className='absolute md:static -top-8 transform left-1/2 -translate-x-1/2 md:translate-x-0 flex items-center gap-x-[10px] -ml-px'>
             {icon}
-            <h3 className='text-sm leading-4 uppercase tracking-widest whitespace-nowrap'>
+            <h3 className='text-[14px] leading-4 uppercase tracking-widest whitespace-nowrap ml-px'>
               {name}
             </h3>
           </div>
-          <StyleList>
-            {children}
-          </StyleList>
+          <div className='mt-3'>
+            <StyleList>{children}</StyleList>
+          </div>
         </>
       )}
     </div>

@@ -17,7 +17,7 @@ export default function CodeEditor({
 
   return (
     <section className={`
-      shadow-2xl-dark overflow-y-scroll w-full border border-white/10 md:rounded-md
+      overflow-y-scroll w-full border border-white/10 md:rounded-md
       ${width}
     `}>
       <div 

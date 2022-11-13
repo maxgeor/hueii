@@ -18,7 +18,7 @@ export default function ColorField({ color, setColor }) {
 
   return (
     <div className='-ml-1 -mb-1'>
-      <div className='group flex items-center gap-x-1 w-fit bg-transparent hover:bg-gray-800 focus:bg-gray-800 focus-within:bg-gray-800 focus-within:ring-1 focus-within:ring-gray-600 rounded-full p-1'>
+      <div className='group flex items-center gap-x-1 w-fit text-gray-100 hover:text-white focus-within:text-white bg-transparent hover:bg-gray-750 focus:bg-gray-750 focus-within:bg-gray-800 focus-within:ring-1 focus-within:ring-gray-600 rounded-full p-1'>
         <ColorBadge 
           color={color} 
           pickerRef={picker}
@@ -29,7 +29,7 @@ export default function ColorField({ color, setColor }) {
           id='hex'
           type='text'
           value={color.toUpperCase()}
-          className='w-20 truncate text-sm text-gray-100 pl-1 leading-5 bg-inherit rounded-r-full focus:outline-none'
+          className='w-24 truncate text-sm pl-1 leading-5 bg-inherit rounded-r-full focus:outline-none'
           onPaste={e => handleChange(e)}
           onChange={e => handleChange(e)}
           onClick={e => e.target.select()}

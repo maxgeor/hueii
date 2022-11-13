@@ -10,7 +10,7 @@ export default function DashboardLayout({ children }) {
       <header className='relative flex items-center justify-between gap-x-2 py-3 px-4 md:pl-[18px] md:py-3 md:px-6 max-w-8xl mx-auto'>
         <div className='flex items-center gap-x-4 w-fit self-start '>
           <Link href='/'>
-            <div className='-ml-1 transition duration-75 transform hover:scale-[104%] active:scale-100'>
+            <div className='-ml-1 transition duration-75 transform hover:scale-[108%] active:scale-100'>
               <Logo size='small' />
             </div>
           </Link>

@@ -4,9 +4,10 @@ import React from 'react';
 import { useState } from 'react'
 import { tags as t } from '@lezer/highlight';
 import { createTheme } from '@uiw/codemirror-themes';
-import { GroupIcon, CodeIcon } from '@radix-ui/react-icons'
+import { GroupIcon, CodeIcon, LetterCaseCapitalizeIcon, LetterCaseLowercaseIcon, TextIcon } from '@radix-ui/react-icons'
 import StyleEditor from '../../components/StyleEditor';
 import CodeEditor from '../../components/CodeEditor';
+import ColorPicker from '../../components/ColorPicker';
 
 export default function SandboxPage() {
   const white = '#C7C7FF'
@@ -79,7 +80,7 @@ export default function SandboxPage() {
         { name: 'Editor Text', color: foreground, setColor: setForeground },
         { name: 'Gutter Text', color: gutterForeground, setColor: setGutterForeground }
       ] },
-      { group: 'Background', isSubgroup: true, items: [
+      { group: 'Backgrounds', isSubgroup: true, items: [
         { name: 'Editor Background', color: background, setColor: setBackground },
         { name: 'Gutter Background', color: gutterBackground, setColor: setGutterBackground },
       ] },
@@ -93,29 +94,32 @@ export default function SandboxPage() {
     ] },
     { group: 'Code', icon: <CodeIcon className='shrink-0'/>, isSubgroup: false, items: [
       { group: 'Data Types', icon: null, isSubgroup: true, items: [
-        { name: 'String', color: string, setColor: setString, fontable: false, bolded: false, italicized: false },
-        { name: 'Number', color: number, setColor: setNumber, fontable: false, bolded: false, italicized: false },
-        { name: 'Boolean', color: bool, setColor: setBool, fontable: false, bolded: false, italicized: false },
-        { name: 'Null', color: nully, setColor: setNully, fontable: false, bolded: false, italicized: false },
+        { name: 'String', color: string, setColor: setString, fontable: true, bolded: false, italicized: false },
+        { name: 'Number', color: number, setColor: setNumber, fontable: true, bolded: false, italicized: false },
+        { name: 'Boolean', color: bool, setColor: setBool, fontable: true, bolded: false, italicized: false },
+        { name: 'Null', color: nully, setColor: setNully, fontable: true, bolded: false, italicized: false },
       ] },
       { group: 'Names', icon: null, isSubgroup: true, items: [
-        { name: 'Class Name', color: className, setColor: setClassName, fontable: false, bolded: false, italicized: false },
-        { name: 'Type Name', color: typeName, setColor: setTypeName, fontable: false, bolded: false, italicized: false },
-        { name: 'Tag Name', color: tagName, setColor: setTagName, fontable: false, bolded: false, italicized: false },
+        { name: 'Class Name', color: className, setColor: setClassName, fontable: true, bolded: false, italicized: false },
+        { name: 'Type Name', color: typeName, setColor: setTypeName, fontable: true, bolded: false, italicized: false },
+        { name: 'Tag Name', color: tagName, setColor: setTagName, fontable: true, bolded: false, italicized: false },
         { name: 'Attribute Name', color: attributeName, setColor: setAttributeName, fontable: false, bolded: false, italicized: false }
       ] },
-      { name: 'Variables', color: variableName, setColor: setVariableName, fontable: false, bolded: false, italicized: false },
-      { name: 'Keyword', color: keyword, setColor: setKeyword, fontable: false, bolded: false, italicized: false },
-      { name: 'Operator', color: operator, setColor: setOperator, fontable: false, bolded: false, italicized: false },
+      { name: 'Variables', color: variableName, setColor: setVariableName, fontable: true, bolded: false, italicized: false },
+      { name: 'Keyword', color: keyword, setColor: setKeyword, fontable: true, bolded: false, italicized: false },
+      { name: 'Operator', color: operator, setColor: setOperator, fontable: true, bolded: false, italicized: false },
       { name: 'Comment', color: comment, setColor: setComment, fontable: true, bolded: false, italicized: false },
-      { name: 'Angle Bracket', color: angleBracket, setColor: setAngleBracket, fontable: false, bolded: false, italicized: false },
-      { name: 'Definition', color: definition, setColor: setDefinition, fontable: false, bolded: false, italicized: false },
+      { name: 'Angle Bracket', color: angleBracket, setColor: setAngleBracket, fontable: true, bolded: false, italicized: false },
+      { name: 'Definition', color: definition, setColor: setDefinition, fontable: true, bolded: false, italicized: false },
     ]},
   ];
 
   return (
     <>
-    <div className='relative md:flex gap-x-12 w-full md:px-6 mt-2 md:mt-3'>
+    <div className='min-h-screen relative md:flex gap-x-12 w-full md:px-6 mt-2 md:mt-3'>
+      {/* <div className='max-w-md mx-auto'>
+        <ColorPicker color={'#000'} />
+      </div> */}
       <StyleEditor 
         styles={styles} 
         width={'md:w-1/3 lg:w-1/4'} 
@@ -124,7 +128,7 @@ export default function SandboxPage() {
         theme={theme}
         background={background}
         foreground={foreground}
-        width={'md:w-2/3 lg:w-3/4'} 
+        width={'md:w-2/3 lg:w-3/4'}
       />
     </div>
     </>

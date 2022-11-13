@@ -12,7 +12,7 @@ module.exports = {
     colors: {
       ...colors,
       black: '#18181C',
-      white: '#DFDFEF',
+      white: '#E9E9F7',
       purple: {
         900: '#101448',
         800: '#17195a',
@@ -29,8 +29,9 @@ module.exports = {
           850: '#191930',
           800: '#20203b',
           750: '#25253e',
+          700: '#363653',
           600: '#444461',
-          500: '#81819D',
+          500: '#7e7e9b',
           100: '#c4c5dc'
         },
       },
@@ -48,7 +49,7 @@ module.exports = {
         'spacing': 'margin, padding',
       },
       boxShadow: {
-        '2xl-dark': 'box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);'
+        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
       }
     },
   },
