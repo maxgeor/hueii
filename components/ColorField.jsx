@@ -8,6 +8,7 @@ export default function ColorField({ color: currentColor, setColor }) {
   const hex = useRef(null);
   const picker = useRef(null);
   const [isPicking, setIsPicking] = useState(false)
+  const [pickedColor, setPickedColor] = useState(currentColor)
 
   const handleChangeComplete = (color) => {
     // let newColor = e.target.value;
@@ -25,7 +26,7 @@ export default function ColorField({ color: currentColor, setColor }) {
       <div className='group flex items-center gap-x-1 w-fit text-gray-100 hover:text-white focus-within:text-white bg-transparent hover:bg-gray-750 focus-within:bg-gray-750 focus-within:ring-1 focus-within:ring-gray-600 rounded-full px-1 transition duration-75 cursor-text'>
         <div className='py-1 h-8'>
           <ColorBadge 
-            color={currentColor} 
+            color={pickedColor} 
             pickerRef={picker}
             showPicker={() => setIsPicking(true)}
             hidePicker={() => setIsPicking(false)}
@@ -48,7 +49,7 @@ export default function ColorField({ color: currentColor, setColor }) {
       </div>
       <SketchPicker
         color={currentColor}
-        // onChange={e => handleChangeComplete(e.hex)}
+        onChange={handleChangeComplete}
         onChangeComplete={handleChangeComplete}
       />
     </div>
