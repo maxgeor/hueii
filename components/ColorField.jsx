@@ -5,7 +5,6 @@ import { useState, useRef } from 'react'
 import { SketchPicker } from 'react-color';
 
 export default function ColorField({ color: currentColor, setColor }) {
-  const hex = useRef(null);
   const picker = useRef(null);
   const [isPicking, setIsPicking] = useState(false)
   const [pickedColor, setPickedColor] = useState(currentColor)
@@ -20,37 +19,41 @@ export default function ColorField({ color: currentColor, setColor }) {
     setColor(color.hex);
   }
 
+  const handlePickerClick = () => {
+    setIsPicking(!isPicking)
+  }
+
   return (
-    <div className='-ml-1 -mb-1'>
-      <div className='group flex items-center gap-x-1 w-fit text-gray-100 hover:text-white focus-within:text-white bg-transparent hover:bg-gray-750 focus-within:bg-gray-750 focus-within:ring-1 focus-within:ring-gray-600 rounded-full px-1 transition duration-75 cursor-text'>
-        <div className='py-1 h-8'>
+    <div className='-ml-1'>
+      <div className='group flex items-center gap-x-1 w-fit text-gray-100 focus-within:text-white bg-transparent hover:bg-gray-800 focus-within:bg-gray-800 focus-within:ring-1 focus-within:ring-gray-600 rounded-full px-1 transition duration-75 cursor-text'>
+        <div className='flex items-center h-7'>
           <ColorBadge 
             color={pickedColor} 
             pickerRef={picker}
-            showPicker={() => setIsPicking(true)}
-            hidePicker={() => setIsPicking(false)}
+            handlePickerClick={handlePickerClick}
             // handleChange={handleChange}
           />
         </div>
-        <div className='flex items-center w-24 pl-1 py-1 -my-1' onClick={() => hex.current.focus()}>
-          <input
-            id='hex'
-            ref={hex}
-            type='text'
-            value={currentColor.toUpperCase()}
-            className='truncate text-sm leading-5 bg-inherit rounded-r-full focus:outline-none'
-            onPaste={e => handleChange(e)}
-            onChange={e => handleChange(e)}
-            onClick={e => e.target.select()}
-            onFocus={e => e.target.select()}
-          />
-        </div>
+        <label 
+          htmlFor='hex'
+          className='flex items-center w-24 pl-0.5 tracking-wide text-sm leading-7 bg-inherit rounded-r-full peer:focus:outline-none'
+          onPaste={e => handleChange(e)}
+          onChange={e => handleChange(e)}
+          onClick={e => e.target.select()}
+          onSelect={e => e.target.select()}
+        >
+          <p className='font-extralight text-gray-200'>#</p>
+          <p>{currentColor.replace('#', '').toUpperCase()}</p>
+        </label>
+        <input id='hex' type='text' className='hidden peer'/>
       </div>
-      <SketchPicker
-        color={currentColor}
-        onChange={handleChangeComplete}
-        onChangeComplete={handleChangeComplete}
-      />
+      {isPicking && (
+        <SketchPicker
+          color={currentColor}
+          onChange={handleChangeComplete}
+          // onChangeComplete={handleChangeComplete}
+        />
+      )}
     </div>
   )
 }

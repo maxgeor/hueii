@@ -43,7 +43,7 @@ export default function StyleList({ styles, colorListExpanded, setColorListExpan
   const StyleListButton = ({ position, handleClick, children }) => {
     return(
       <button 
-        className={`${position} hidden absolute w-fit p-2 rounded-full bg-gray-750 hover:bg-gray-600 active:bg-gray-600 text-white`}
+        className={`${position} hidden absolute w-fit p-2 rounded-full bg-gray-800 hover:bg-gray-600 active:bg-gray-600 text-white`}
         onClick={handleClick}
       >
         {children}
