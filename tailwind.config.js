@@ -12,7 +12,7 @@ module.exports = {
     colors: {
       ...colors,
       black: '#18181C',
-      white: '#E9E9F7',
+      white: '#D4D3E4',
       purple: {
         900: '#101448',
         800: '#17195a',
@@ -31,7 +31,7 @@ module.exports = {
           600: '#444461',
           500: '#7e7e9b',
           200: '#a2a4bc',
-          100: '#c4c5dc'
+          100: '#BDBED7'
         },
       },
       fontFamily: {
@@ -49,6 +49,13 @@ module.exports = {
       },
       boxShadow: {
         '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+      },
+      letterSpacing: {
+        'wideish': '.0375em',
+        'widestest': '.12em',
+      },
+      maxWidth: {
+        '6xl': '70rem',
       }
     },
   },
