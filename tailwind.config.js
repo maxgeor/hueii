@@ -25,12 +25,12 @@ module.exports = {
       },
       colors: {
         gray: {
-          900: '#1e1e36',
-          800: '#25253e',
-          700: '#383853',
+          900: '#1B1B25',
+          700: '#2F2F47',
           600: '#444461',
-          500: '#7e7e9b',
-          200: '#a2a4bc',
+          500: '#80808d',
+          300: '#9798a8',
+          200: '#a6a7bd',
           100: '#BDBED7'
         },
       },
@@ -52,10 +52,9 @@ module.exports = {
       },
       letterSpacing: {
         'wideish': '.0375em',
-        'widestest': '.12em',
       },
       maxWidth: {
-        '6xl': '70rem',
+        '2.5xl': '46rem',
       }
     },
   },
