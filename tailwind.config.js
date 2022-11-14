@@ -26,6 +26,7 @@ module.exports = {
       colors: {
         gray: {
           900: '#1B1B25',
+          800: '#212128',
           700: '#2F2F47',
           600: '#444461',
           500: '#80808d',
@@ -54,7 +55,7 @@ module.exports = {
         'wideish': '.0375em',
       },
       maxWidth: {
-        '2.5xl': '46rem',
+        '6xl': '68rem',
       }
     },
   },

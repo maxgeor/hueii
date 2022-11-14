@@ -115,7 +115,7 @@ export default function SandboxPage() {
 
   return (
     <>
-    <div className='min-h-screen relative md:flex gap-x-12 lg:gap-x-14 w-full md:px-6 mt-2 md:mt-3 max-w-6xl mx-auto'>
+    <div className='min-h-screen relative md:flex md:justify-between gap-x-10 lg:gap-x-20 w-full md:px-6 mt-2 md:mt-3 max-w-6xl mx-auto'>
       <StyleEditor 
         styles={styles} 
         width={'md:w-1/3 lg:w-1/4'} 

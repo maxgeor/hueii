@@ -14,7 +14,7 @@ export default function StyleGroup({
 
   const StyleList = ({ children: c }) => (
     <section className={`
-      flex flex-col border-white/[9%]
+      flex flex-col border-gray-800
       ${isSubgroup ? 'pl-2 ml-4 border-box border-l' : 'md:pl-2 ml-px md:border-l'}
     `}>
       {c}
@@ -39,7 +39,7 @@ export default function StyleGroup({
             <h3 className='text-xs leading-6 uppercase font-light tracking-widest whitespace-nowrap'>
               {name}
             </h3>
-            <div className="flex justify-end items-center gap-x-[7px] -mr-[5px]">
+            <div className="flex justify-end items-center gap-x-1.5 -mr-[5px]">
               {open ? null : (
                 <div className={`
                   flex gap-x-[5px] transition-all 

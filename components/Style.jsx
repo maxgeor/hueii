@@ -15,7 +15,7 @@ export default function Style({
       -mb-1 overflow-visible flex flex-col relative rounded-lg pt-2 px-4 pb-3
       bg-transparent hover:bg-gray-700 active:bg-gray-700 md:bg-transparent md:hover:bg-transparent md:focus:bg-transparent
     `}>
-      <h4 className={`lowercase  text-gray-500 leading-5 font-mono text-[11px] `}>
+      <h4 className={`lowercase  text-gray-500 leading-5 font-mono text-[11px] tracking-wide`}>
         {name}
       </h4>
       <div className='flex flex-wrap items-center md:w-full md:justify-between gap-2'>
