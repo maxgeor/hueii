@@ -1,14 +1,19 @@
 'use client';
 
 import React from 'react';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { tags as t } from '@lezer/highlight';
 import { createTheme } from '@uiw/codemirror-themes';
-import { GroupIcon, CodeIcon, LetterCaseCapitalizeIcon, LetterCaseLowercaseIcon, TextIcon } from '@radix-ui/react-icons'
+import { GroupIcon, CodeIcon, DividerVerticalIcon } from '@radix-ui/react-icons'
 import StyleEditor from '../../components/StyleEditor';
 import CodeEditor from '../../components/CodeEditor';
+import { SketchPicker } from 'react-color';
 
 export default function SandboxPage() {
+  const [picking, setPicking] = useState(false)
+  const [pickerColor, setPickerColor] = useState('#fff')
+  const [handlePickerChange, setHandlePickerChange] = useState(() => () => {})
+
   const white = '#C7C7FF'
   const black = '#222237'
   const gray = '#B0B0CF'
@@ -18,6 +23,16 @@ export default function SandboxPage() {
   const red = '#D4629A';
   const yellow = '#C6B062';
   const teal = '#72BABB';
+
+  const handleShowPicker = (color, setColor) => {
+    setHandlePickerChange(color => setColor(color))
+    setPickerColor(color)
+    setPicking(true)
+  }
+
+  const handleChangeComplete = (color) => {
+    handlePickerChange(color.hex);
+  }
 
   const [lightOrDark, setLightOrDark]           = useState('dark');
   const [background, setBackground]             = useState(black);
@@ -116,10 +131,21 @@ export default function SandboxPage() {
   return (
     <>
     <div className='min-h-screen relative md:flex md:justify-between gap-x-10 lg:gap-x-20 w-full md:px-6 mt-2 md:mt-3 max-w-6xl mx-auto'>
-      <StyleEditor 
-        styles={styles} 
-        width={'md:w-1/3 lg:w-1/4'} 
-      />
+      <div className={`${picking ? 'hidden' : 'flex'} w-full`}>
+        <StyleEditor 
+          styles={styles} 
+          width={'md:w-1/3 lg:w-1/4'} 
+          showPicker={(color, setColor) => handleShowPicker(color, setColor)}
+        />
+      </div>
+      <div className={`${picking ? 'flex' : 'hidden'} w-full`}>
+        <button onClick={() => setPicking(false)}>← Back</button>
+        <SketchPicker
+          color={pickerColor}
+          onChange={handleChangeComplete}
+          // onChangeComplete={handleChangeComplete}
+        />
+      </div>
       <CodeEditor 
         theme={theme}
         background={background}

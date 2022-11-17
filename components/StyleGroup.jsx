@@ -47,7 +47,7 @@ export default function StyleGroup({
                   {children.map(c => <ColorBadge key={c.props.name} color={c.props.color} preview={true} />)}
                 </div>
               )}
-              <ChevronDownIcon className={`${open ? '-rotate-180' : 'rotate-0'} transform shrink-0 -mt-px transition ease-out duration-300`} />
+              <ChevronDownIcon className={`${open ? '-rotate-180 translate-y-px' : 'rotate-0'} transform shrink-0 -mt-px transition ease-out duration-300`} />
             </div>
           </button>
           {open ? <StyleList>{children}</StyleList> : null}

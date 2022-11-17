@@ -5,7 +5,7 @@ import StyleGroup from './StyleGroup';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { EnterFullScreenIcon, ExitFullScreenIcon, ArrowLeftIcon } from '@radix-ui/react-icons'
 
-export default function StyleList({ styles, colorListExpanded, setColorListExpanded }) {
+export default function StyleList({ styles, showPicker, colorListExpanded, setColorListExpanded }) {
   const [groups, setGroups] = useState([]);
 
   function renderStyles(styles) {
@@ -34,6 +34,7 @@ export default function StyleList({ styles, colorListExpanded, setColorListExpan
             fontable={s.fontable} 
             bolded={s.bolded} 
             italicized={s.italicized}
+            showPicker={showPicker}
           />
         )
       }

@@ -6,6 +6,7 @@ export default function Style({
   name,
   color, 
   setColor,
+  showPicker,
   fontable = false, 
   bolded = true, 
   italicized = false
@@ -19,7 +20,7 @@ export default function Style({
         {name}
       </h4>
       <div className='flex flex-wrap items-center md:w-full md:justify-between gap-2'>
-        <ColorField color={color} setColor={setColor} />
+        <ColorField color={color} setColor={setColor} showPicker={showPicker} />
         {fontable ? <FontFields bolded={bolded} italicized={italicized} /> : null}
       </div>
       <ChevronRightIcon className='absolute md:hidden md:hover:block right-3.5 translate top-1/2 -translate-y-1/2' />
