@@ -9,7 +9,7 @@ export default function ColorField({ color, setColor, showPicker }) {
         <div className='flex items-center h-7'>
           <ColorBadge 
             color={currentColor} 
-            showPicker={() => showPicker(color, setColor)}
+            showPicker={() => showPicker(color, () => setColor)}
           />
         </div>
         <div className='flex items-center text-sm leading-7 text-gray-100  w-24 pl-0.5 '>

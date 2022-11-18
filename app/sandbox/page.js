@@ -4,15 +4,17 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import { tags as t } from '@lezer/highlight';
 import { createTheme } from '@uiw/codemirror-themes';
-import { GroupIcon, CodeIcon, DividerVerticalIcon } from '@radix-ui/react-icons'
+import { GroupIcon, CodeIcon, DividerVerticalIcon, ArrowLeftIcon } from '@radix-ui/react-icons'
 import StyleEditor from '../../components/StyleEditor';
 import CodeEditor from '../../components/CodeEditor';
+import StyleEditorButton from '../../components/StyleEditorButton';
 import { SketchPicker } from 'react-color';
 
 export default function SandboxPage() {
   const [picking, setPicking] = useState(false)
   const [pickerColor, setPickerColor] = useState('#fff')
-  const [handlePickerChange, setHandlePickerChange] = useState(() => () => {})
+  const [colorListExpanded, setColorListExpanded] = useState(false);
+  const [changeColor, setChangeColor] = useState(null)
 
   const white = '#C7C7FF'
   const black = '#222237'
@@ -25,14 +27,15 @@ export default function SandboxPage() {
   const teal = '#72BABB';
 
   const handleShowPicker = (color, setColor) => {
-    setHandlePickerChange(color => setColor(color))
+    setChangeColor(setColor)
     setPickerColor(color)
     setPicking(true)
   }
 
-  const handleChangeComplete = (color) => {
-    handlePickerChange(color.hex);
-  }
+  const handleChangeComplete = color => {
+    setPickerColor(color.hex)
+    changeColor(color.hex)
+  };
 
   const [lightOrDark, setLightOrDark]           = useState('dark');
   const [background, setBackground]             = useState(black);
@@ -119,40 +122,65 @@ export default function SandboxPage() {
         { name: 'Tag Name', color: tagName, setColor: setTagName, fontable: true, bolded: false, italicized: false },
         { name: 'Attribute Name', color: attributeName, setColor: setAttributeName, fontable: false, bolded: false, italicized: false }
       ] },
-      { name: 'Variables', color: variableName, setColor: setVariableName, fontable: true, bolded: false, italicized: false },
       { name: 'Keyword', color: keyword, setColor: setKeyword, fontable: true, bolded: false, italicized: false },
+      { name: 'Variables', color: variableName, setColor: setVariableName, fontable: true, bolded: false, italicized: false },
       { name: 'Operator', color: operator, setColor: setOperator, fontable: true, bolded: false, italicized: false },
       { name: 'Comment', color: comment, setColor: setComment, fontable: true, bolded: false, italicized: false },
-      { name: 'Angle Bracket', color: angleBracket, setColor: setAngleBracket, fontable: true, bolded: false, italicized: false },
-      { name: 'Definition', color: definition, setColor: setDefinition, fontable: true, bolded: false, italicized: false },
+      { group: '•••', icon: null, isSubgroup: true, items: [
+        { name: 'Angle Bracket', color: angleBracket, setColor: setAngleBracket, fontable: true, bolded: false, italicized: false },
+        { name: 'Definition', color: definition, setColor: setDefinition, fontable: true, bolded: false, italicized: false },
+      ] },
     ]},
   ];
 
   return (
-    <>
-    <div className='min-h-screen relative md:flex md:justify-between gap-x-10 lg:gap-x-20 w-full md:px-6 mt-2 md:mt-3 max-w-6xl mx-auto'>
-      <div className={`${picking ? 'hidden' : 'flex'} w-full`}>
-        <StyleEditor 
-          styles={styles} 
-          width={'md:w-1/3 lg:w-1/4'} 
-          showPicker={(color, setColor) => handleShowPicker(color, setColor)}
-        />
-      </div>
-      <div className={`${picking ? 'flex' : 'hidden'} w-full`}>
-        <button onClick={() => setPicking(false)}>← Back</button>
-        <SketchPicker
-          color={pickerColor}
-          onChange={handleChangeComplete}
-          // onChangeComplete={handleChangeComplete}
-        />
-      </div>
+    <div className='max-h-screen relative md:flex md:justify-between gap-x-10 lg:gap-x-16 w-full md:px-6 mt-2 md:mt-3 max-w-[1158px] mx-auto'>
+      <section className={`
+        flex md:w-1/3 lg:w-1/4 overflow-y-scroll shadow-xl md:shadow-none absolute md:relative bottom-1.5 z-20  pt-12 px-1 pb-4 md:p-0 md:pt-2.5 bg-black/90 backdrop-blur md:h-auto rounded-xl md:rounded-none border border-white/[15%] md:border-none
+        ${colorListExpanded ? 'h-full top-1.5 left-1.5 right-1.5 bottom-1.5' : 'h-[calc(100vh/3)] bottom-1.5 left-1.5 right-1.5'}
+      `}>
+        <div className={`${picking ? 'opacity-0 -translate-x-64' : 'opacity-100 translate-x-0 '} ease-in-out transform duration-[250ms] transition-all w-full`}>
+          <StyleEditor 
+            styles={styles} 
+            colorListExpanded={colorListExpanded}
+            setColorListExpanded={setColorListExpanded}
+            showPicker={handleShowPicker}
+          />
+        </div>
+        <div className={`${picking ? 'opacity-100 -translate-x-[188px]' : ' opacity-0 translate-x-[800px]'} sticky top-4 flex flex-col gap-y-4 -mt-[5px] transform duration-[250ms] ease-in-out transition-all w-full`}>
+          <div className=' flex items-center justify-center '>
+            <StyleEditorButton
+              position={'top-0 -left-1'}
+              handleClick={() => setPicking(false)}
+            >
+              <ArrowLeftIcon /> 
+            </StyleEditorButton>
+            <div className='flex items-center gap-x-1.5'>
+              <span 
+                style={{ backgroundColor: pickerColor }}
+                className={`border border-white/[30%] h-5 w-5 rounded-full `}
+              ></span>
+              <div className='flex items-center w-16 text-sm leading-7 '>
+                <p className='font-light'>#</p>
+                <p className='tracking-widish text-gray-100'>
+                  {pickerColor.replace('#', '').toUpperCase()}
+                </p>
+              </div>
+            </div>
+          </div>
+          <SketchPicker
+            color={pickerColor}
+            onChange={handleChangeComplete}
+            // onChangeComplete={handleChangeComplete}
+          />
+        </div>
+      </section>
       <CodeEditor 
         theme={theme}
         background={background}
         foreground={foreground}
-        width={'md:w-2/3 lg:w-3/4'}
+        width={'w-2/3 lg:w-3/4'}
       />
     </div>
-    </>
   );
 }

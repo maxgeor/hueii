@@ -14,8 +14,7 @@
   }
 }
 
-@layer components {
-  .cm-scroller {
-    @apply font-maru;
-  }
+.CodeMirror {
+  font-family: serif;
+  font-size: 16px;
 }
