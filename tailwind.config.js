@@ -26,7 +26,7 @@ module.exports = {
       colors: {
         gray: {
           900: '#1B1B25',
-          800: '#27272F',
+          800: '#24242C',
           700: '#2F2F47',
           600: '#444461',
           500: '#80808d',
@@ -52,7 +52,7 @@ module.exports = {
         '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
       },
       letterSpacing: {
-        'wideish': '.0375em',
+        'wideish': '.01em',
       },
       maxWidth: {
         '6xl': '68rem',

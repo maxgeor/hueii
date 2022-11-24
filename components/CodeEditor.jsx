@@ -5,24 +5,20 @@ import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import sampleCode from '../lib/samples/javascript';
 
-export default function CodeEditor({
-  width,
-  background,
-  foreground,
-  theme
-}) {
-  const onChange = React.useCallback((value, viewUpdate) => {
+export default function CodeEditor({ width, background, foreground, theme }) {
+  const onChange = useCallback((value, viewUpdate) => {
     console.log('value:', value);
   }, []);
 
   return (
     <section className={`
-      overflow-y-scroll w-full border border-gray-100/[8%] md:rounded-md
+      max-h-[calc(100vh-104px)] md:max-h-[calc(100vh-112px)] md:max-w-[610px]
+      transition-all ease-in-out duration-500 relative overflow-y-scroll w-full border border-gray-100/[8%] md:rounded-tl-md md:rounded-xl md:skew-y-1 md:-skew-x-2 md:border-b-[12px] md:border-r-[12px] text-sm md:text-xs
       ${width}
     `}>
       <div 
         style={{ backgroundColor: background, color: foreground }}
-        className='text-xs flex md:rounded-t-md'
+        className='z-10 sticky top-0 flex md:rounded-t-md border-b border-b-black/40'
       >
         <div className={`border-r border-r-black/40 border-b-white flex justify-center items-center gap-x-2 p-2 px-4  rounded-tl-md`}>
           <img className='w-3 h-3 rounded-[1px]' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
@@ -37,7 +33,7 @@ export default function CodeEditor({
           <p>index.js</p>
         </div>
       </div>
-      <div className='h-fit'>
+      <div className=''>
         <CodeMirror
           height={'fit-content'}
           theme={theme}

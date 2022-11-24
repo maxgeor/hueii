@@ -1,6 +1,5 @@
 import ColorField from './ColorField'
 import FontFields from './FontFields';
-import { ChevronRightIcon } from '@radix-ui/react-icons';
 
 export default function Style({ 
   name,
@@ -12,18 +11,14 @@ export default function Style({
   italicized = false
 }) {
   return (
-    <div className={`
-      -mb-1 overflow-visible flex flex-col relative rounded-lg pt-2 px-4 pb-3
-      bg-transparent hover:bg-gray-700 active:bg-gray-700 md:bg-transparent md:hover:bg-transparent md:focus:bg-transparent
-    `}>
-      <h4 className={`lowercase  text-gray-500 leading-5 font-mono text-[11px]`}>
+    <div className={`-mb-1 flex flex-col pt-2 px-4 pb-3`}>
+      <h4 className={`lowercase tracking-wideish text-gray-500 leading-5 font-mono text-[13px] md:text-[11px]`}>
         {name}
       </h4>
       <div className='flex flex-wrap items-center md:w-full md:justify-between gap-2'>
         <ColorField color={color} setColor={setColor} showPicker={showPicker} />
         {fontable ? <FontFields bolded={bolded} italicized={italicized} /> : null}
       </div>
-      <ChevronRightIcon className='absolute md:hidden md:hover:block right-3.5 translate top-1/2 -translate-y-1/2' />
     </div>
   )
 }

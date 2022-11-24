@@ -1,24 +1,56 @@
-import StyleList from './StyleList';
+'use client'
 
-export default function StyleEditor({ styles, width = null, showPicker, colorListExpanded = false, setColorListExpanded = null }) {
+import Style from './Style';
+import StyleGroup from './StyleGroup';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { EnterFullScreenIcon, ExitFullScreenIcon, ArrowLeftIcon } from '@radix-ui/react-icons'
+
+export default function StyleEditor({ styles, showPicker, colorListExpanded = false, setColorListExpanded = null }) {
+
+  function renderStyles(styles) {
+    return styles.map(s => {
+      if ('group' in s) {
+        return (
+          <StyleGroup 
+            key={s.group} 
+            name={s.group}
+            icon={s.icon}
+            isSubgroup={s.isSubgroup}
+          >
+            {renderStyles(s.items)}
+          </StyleGroup>
+        ) 
+      } else {
+        return (
+          <Style 
+            key={s.name} 
+            name={s.name} 
+            color={s.color} 
+            setColor={s.setColor} 
+            fontable={s.fontable} 
+            bolded={s.bolded} 
+            italicized={s.italicized}
+            showPicker={showPicker}
+          />
+        )
+      }
+    })
+  }
+
+  const StyleListButton = ({ position, handleClick, children }) => {
+    return(
+      <button 
+        className={`${position} hidden absolute w-fit p-2 rounded-full bg-gray-700 hover:bg-gray-600 active:bg-gray-600 text-white`}
+        onClick={handleClick}
+      >
+        {children}
+      </button>
+    )
+  }
+
   return (
-    <StyleList 
-      styles={styles} 
-      colorListExpanded={colorListExpanded}
-      setColorListExpanded={setColorListExpanded}
-      showPicker={showPicker}
-    />
-    // <section className={`
-    //   max-w-[255px] overflow-y-scroll shadow-xl md:shadow-none absolute md:static bottom-1.5 z-20  pt-12 px-1 pb-4 md:p-0 md:pt-2.5 bg-black/90 backdrop-blur md:h-auto rounded-xl md:rounded-none border border-white/[15%] md:border-none
-    //   ${colorListExpanded ? 'h-full top-1.5 left-1.5 right-1.5 bottom-1.5' : 'h-[calc(100vh/3)] bottom-1.5 left-1.5 right-1.5'}
-    //   ${width}
-    // `}>
-    //   <StyleList 
-    //     styles={styles} 
-    //     colorListExpanded={colorListExpanded}
-    //     setColorListExpanded={setColorListExpanded}
-    //     showPicker={showPicker}
-    //   />
-    // </section>
+    <div className='md:max-h-[calc(100%-112px)] relative flex flex-col gap-y-12'>
+      {renderStyles(styles)}
+    </div>
   )
 }

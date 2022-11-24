@@ -18,3 +18,11 @@
   font-family: serif;
   font-size: 16px;
 }
+
+.cm-gutterElement{
+  height: 18.21px !important;
+}
+
+.cm-gutterElement > span {
+  height: 18.21px !important;
+}

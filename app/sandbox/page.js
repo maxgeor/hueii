@@ -12,7 +12,7 @@ import { SketchPicker } from 'react-color';
 
 export default function SandboxPage() {
   const [picking, setPicking] = useState(false)
-  const [pickerColor, setPickerColor] = useState('#fff')
+  const [color, setColor] = useState('#fff')
   const [colorListExpanded, setColorListExpanded] = useState(false);
   const [changeColor, setChangeColor] = useState(null)
 
@@ -26,15 +26,15 @@ export default function SandboxPage() {
   const yellow = '#C6B062';
   const teal = '#72BABB';
 
-  const handleShowPicker = (color, setColor) => {
-    setChangeColor(setColor)
-    setPickerColor(color)
+  const handleShowPicker = (pickerColor, setPickerColor) => {
+    setChangeColor(setPickerColor)
+    setColor(pickerColor)
     setPicking(true)
   }
 
-  const handleChangeComplete = color => {
-    setPickerColor(color.hex)
-    changeColor(color.hex)
+  const handleChangeComplete = ({ hex }) => {
+    setColor(hex)
+    changeColor(hex)
   };
 
   const [lightOrDark, setLightOrDark]           = useState('dark');
@@ -75,7 +75,7 @@ export default function SandboxPage() {
     },
     styles: [
       { tag: t.comment, color: comment },
-      { tag: t.variableName, color: variableName },
+      { tag: t.variableName, color: variableName, backgroundColor: '#00000000' },
       { tag: [t.string, t.special(t.brace)], color: string },
       { tag: t.number, color: number },
       { tag: t.bool, color: bool },
@@ -83,7 +83,7 @@ export default function SandboxPage() {
       { tag: t.keyword, color: keyword },
       { tag: t.operator, color: operator },
       { tag: t.className, color: className },
-      { tag: t.definition(t.typeName), color: definition },
+      { tag: t.definition(t.typeName), color: definition},
       { tag: t.typeName, color: typeName },
       { tag: t.angleBracket, color: angleBracket },
       { tag: t.tagName, color: tagName },
@@ -134,12 +134,17 @@ export default function SandboxPage() {
   ];
 
   return (
-    <div className='max-h-screen relative md:flex md:justify-between gap-x-10 lg:gap-x-16 w-full md:px-6 mt-2 md:mt-3 max-w-[1158px] mx-auto'>
+    <div className={`
+      ${picking ? 'max-w-[975px]' : 'max-w-[1100px]'}
+      h-screen relative md:flex md:justify-between gap-x-16 w-full md:px-6 md:pr-8 pt-2 md:pt-4 mx-auto transition-all ease-out duration-500 bg-transparent 
+    `}>
       <section className={`
-        flex md:w-1/3 lg:w-1/4 overflow-y-scroll shadow-xl md:shadow-none absolute md:relative bottom-1.5 z-20  pt-12 px-1 pb-4 md:p-0 md:pt-2.5 bg-black/90 backdrop-blur md:h-auto rounded-xl md:rounded-none border border-white/[15%] md:border-none
-        ${colorListExpanded ? 'h-full top-1.5 left-1.5 right-1.5 bottom-1.5' : 'h-[calc(100vh/3)] bottom-1.5 left-1.5 right-1.5'}
+        md:w-1/3 lg:w-1/4
+        bg-black/90 backdrop-blur  h-screen transition-all ease-out duration-500 flex shadow-xl md:shadow-none absolute md:relative bottom-1.5 z-20 pt-12 md:-ml-1 px-1 pb-4 md:p-0 md:pt-2.5 md:h-auto rounded-xl md:rounded-none border border-white/[15%] md:border-none
+        ${colorListExpanded ? 'h-full top-1.5 left-1.5 right-1.5 bottom-1.5' : 'h-[calc(100vh/2.7)] bottom-1.5 left-1.5 right-1.5'}
       `}>
-        <div className={`${picking ? 'opacity-0 -translate-x-64' : 'opacity-100 translate-x-0 '} ease-in-out transform duration-[250ms] transition-all w-full`}>
+        <div className={`${picking && 'hidden'} h-screen overflow-y-scroll  ease-in-out transform duration-[250ms] transition-all w-full`}>
+        {/* <div className={`${picking && 'hidden'} h-screen md:max-w-[260px] overflow-y-scroll  ease-in-out transform duration-[250ms] transition-all w-full`}> */}
           <StyleEditor 
             styles={styles} 
             colorListExpanded={colorListExpanded}
@@ -147,7 +152,7 @@ export default function SandboxPage() {
             showPicker={handleShowPicker}
           />
         </div>
-        <div className={`${picking ? 'opacity-100 -translate-x-[188px]' : ' opacity-0 translate-x-[800px]'} sticky top-4 flex flex-col gap-y-4 -mt-[5px] transform duration-[250ms] ease-in-out transition-all w-full`}>
+        <div className={`${!picking && 'hidden'} flex flex-col gap-y-4 transform duration-[250ms] ease-in-out transition-all w-full`}>
           <div className=' flex items-center justify-center '>
             <StyleEditorButton
               position={'top-0 -left-1'}
@@ -157,19 +162,19 @@ export default function SandboxPage() {
             </StyleEditorButton>
             <div className='flex items-center gap-x-1.5'>
               <span 
-                style={{ backgroundColor: pickerColor }}
+                style={{ backgroundColor: color }}
                 className={`border border-white/[30%] h-5 w-5 rounded-full `}
               ></span>
               <div className='flex items-center w-16 text-sm leading-7 '>
                 <p className='font-light'>#</p>
-                <p className='tracking-widish text-gray-100'>
-                  {pickerColor.replace('#', '').toUpperCase()}
+                <p className='tracking-wideish text-gray-100'>
+                  {color.replace('#', '').toUpperCase()}
                 </p>
               </div>
             </div>
           </div>
           <SketchPicker
-            color={pickerColor}
+            color={color}
             onChange={handleChangeComplete}
             // onChangeComplete={handleChangeComplete}
           />
@@ -179,7 +184,7 @@ export default function SandboxPage() {
         theme={theme}
         background={background}
         foreground={foreground}
-        width={'w-2/3 lg:w-3/4'}
+        width='md:w-2/3 lg:w-3/4'
       />
     </div>
   );

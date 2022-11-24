@@ -53,7 +53,7 @@ export default function StyleList({ styles, showPicker, colorListExpanded, setCo
   }
 
   return (
-    <div className='relative flex flex-col gap-y-12'>
+    <div className='max-h-[calc(100%-112px)] relative flex flex-col gap-y-12'>
       {/* <div>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger />
