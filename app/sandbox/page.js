@@ -134,10 +134,7 @@ export default function SandboxPage() {
   ];
 
   return (
-    <div className={`
-      ${picking ? 'max-w-[975px]' : 'max-w-[1100px]'}
-      h-screen relative md:flex md:justify-between gap-x-16 w-full md:px-6 md:pr-8 pt-2 md:pt-4 mx-auto transition-all ease-out duration-500 bg-transparent 
-    `}>
+    <div className={`max-w-[1100px] h-screen relative md:flex md:justify-between gap-x-16 w-full md:px-6 md:pr-8 pt-2 md:pt-4 mx-auto transition-all ease-out duration-500 bg-transparent `}>
       <section className={`
         md:w-1/3 lg:w-1/4
         bg-black/90 backdrop-blur  h-screen transition-all ease-out duration-500 flex shadow-xl md:shadow-none absolute md:relative bottom-1.5 z-20 pt-12 md:-ml-1 px-1 pb-4 md:p-0 md:pt-2.5 md:h-auto rounded-xl md:rounded-none border border-white/[15%] md:border-none
