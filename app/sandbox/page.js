@@ -4,8 +4,8 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import { tags as t } from '@lezer/highlight';
 import { createTheme } from '@uiw/codemirror-themes';
-import { GroupIcon, CodeIcon, DividerVerticalIcon, ArrowLeftIcon } from '@radix-ui/react-icons'
-import StyleEditor from '../../components/StyleEditor';
+import { GroupIcon, CodeIcon, ArrowLeftIcon } from '@radix-ui/react-icons'
+import StyleList from '../../components/StyleList';
 import CodeEditor from '../../components/CodeEditor';
 import StyleEditorButton from '../../components/StyleEditorButton';
 import { SketchPicker } from 'react-color';
@@ -13,17 +13,11 @@ import { SketchPicker } from 'react-color';
 export default function SandboxPage() {
   const [picking, setPicking] = useState(false)
   const [color, setColor] = useState('#fff')
-  const [colorListExpanded, setColorListExpanded] = useState(false);
   const [changeColor, setChangeColor] = useState(null)
 
-  const white = '#C7C7FF'
   const black = '#222237'
   const gray = '#B0B0CF'
-  const purple = '#817BD5';
   const green = '#63BB96';
-  const blue = '#3FA7DE';
-  const red = '#D4629A';
-  const yellow = '#C6B062';
   const teal = '#72BABB';
 
   const handleShowPicker = (pickerColor, setPickerColor) => {
@@ -40,12 +34,10 @@ export default function SandboxPage() {
   const [lightOrDark, setLightOrDark]           = useState('dark');
   const [background, setBackground]             = useState(black);
   const [foreground, setForeground]             = useState(gray);
-  const [caret, setCaret]                       = useState('#fff');
+  const [gutterForeground, setGutterForeground] = useState(gray);
   const [selection, setSelection]               = useState('#343450');
   const [selectionMatch, setSelectionMatch]     = useState('#28283e');
   const [lineHighlight, setLineHighlight]       = useState('#8a91991a');
-  const [gutterBackground, setGutterBackground] = useState(black);
-  const [gutterForeground, setGutterForeground] = useState('#464658');
   const [comment, setComment]                   = useState('#45455f');
   const [variableName, setVariableName]         = useState(teal);
   const [string, setString]                     = useState(green);
@@ -66,11 +58,11 @@ export default function SandboxPage() {
     settings: {
       background,
       foreground,
-      caret,
+      caret: foreground,
       selection,
       selectionMatch,
       lineHighlight,
-      gutterBackground,
+      gutterBackground: background,
       gutterForeground,
     },
     styles: [
@@ -93,21 +85,14 @@ export default function SandboxPage() {
 
   const styles = [
     { group: 'General', icon: <GroupIcon className='shrink-0'/>, isSubgroup: false, items: [
-      { group: 'Text', isSubgroup: true, items: [
-        { name: 'Editor Text', color: foreground, setColor: setForeground },
-        { name: 'Gutter Text', color: gutterForeground, setColor: setGutterForeground }
-      ] },
-      { group: 'Backgrounds', isSubgroup: true, items: [
-        { name: 'Editor Background', color: background, setColor: setBackground },
-        { name: 'Gutter Background', color: gutterBackground, setColor: setGutterBackground },
-      ] },
       { group: 'Highlights', isSubgroup: true, items: [
         { name: 'Line Highlight', color: lineHighlight, setColor: setLineHighlight },
         { name: 'Selection', color: selection, setColor: setSelection },
         { name: 'Selection Match', color: selectionMatch, setColor: setSelectionMatch },
       ] },
-      { name: 'Light or Dark?', color: lightOrDark, setColor: setLightOrDark },
-      { name: 'Caret', color: caret, setColor: setCaret },
+      { name: 'Text', color: foreground, setColor: setForeground },
+      { name: 'Background', color: background, setColor: setBackground },
+      // { name: 'Light or Dark?', color: lightOrDark, setColor: setLightOrDark },
     ] },
     { group: 'Code', icon: <CodeIcon className='shrink-0'/>, isSubgroup: false, items: [
       { group: 'Data Types', icon: null, isSubgroup: true, items: [
@@ -135,24 +120,17 @@ export default function SandboxPage() {
 
   return (
     <div className={`
-      ${picking ? 'max-w-[975px]' : 'max-w-[1100px]'}
-      h-screen relative md:flex md:justify-between gap-x-16 w-full md:px-6 md:pr-8 pt-2 md:pt-4 mx-auto transition-all ease-out duration-500 bg-transparent 
+      max-w-[1100px] h-screen relative md:flex md:justify-between gap-x-16 w-full md:px-6 pt-2 md:pt-4 mx-auto bg-transparent 
     `}>
       <section className={`
         md:w-1/3 lg:w-1/4
-        bg-black/90 backdrop-blur  h-screen transition-all ease-out duration-500 flex shadow-xl md:shadow-none absolute md:relative bottom-1.5 z-20 pt-12 md:-ml-1 px-1 pb-4 md:p-0 md:pt-2.5 md:h-auto rounded-xl md:rounded-none border border-white/[15%] md:border-none
-        ${colorListExpanded ? 'h-full top-1.5 left-1.5 right-1.5 bottom-1.5' : 'h-[calc(100vh/2.7)] bottom-1.5 left-1.5 right-1.5'}
+        bg-black/90 backdrop-blur  h-screen flex shadow-xl md:shadow-none absolute md:relative bottom-1.5 left-1.5 right-1.5 z-20 pt-12 md:-ml-1 px-1 pb-4 md:p-0 md:pt-2.5 md:h-auto rounded-xl md:rounded-none border border-white/[15%] md:border-none
       `}>
-        <div className={`${picking && 'hidden'} h-screen overflow-y-scroll  ease-in-out transform duration-[250ms] transition-all w-full`}>
-        {/* <div className={`${picking && 'hidden'} h-screen md:max-w-[260px] overflow-y-scroll  ease-in-out transform duration-[250ms] transition-all w-full`}> */}
-          <StyleEditor 
-            styles={styles} 
-            colorListExpanded={colorListExpanded}
-            setColorListExpanded={setColorListExpanded}
-            showPicker={handleShowPicker}
-          />
-        </div>
-        <div className={`${!picking && 'hidden'} flex flex-col gap-y-4 transform duration-[250ms] ease-in-out transition-all w-full`}>
+        <StyleList
+          styles={styles} 
+          showPicker={handleShowPicker}
+        />
+        <div className={`hidden flex flex-col gap-y-4 transform duration-[250ms] ease-in-out transition-all w-full`}>
           <div className=' flex items-center justify-center '>
             <StyleEditorButton
               position={'top-0 -left-1'}
@@ -176,7 +154,6 @@ export default function SandboxPage() {
           <SketchPicker
             color={color}
             onChange={handleChangeComplete}
-            // onChangeComplete={handleChangeComplete}
           />
         </div>
       </section>

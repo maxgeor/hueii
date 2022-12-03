@@ -12,8 +12,8 @@ export default function CodeEditor({ width, background, foreground, theme }) {
 
   return (
     <section className={`
-      max-h-[calc(100vh-104px)] md:max-h-[calc(100vh-112px)] md:max-w-[610px]
-      transition-all ease-in-out duration-500 relative overflow-y-scroll w-full border border-gray-100/[8%] md:rounded-tl-md md:rounded-xl md:skew-y-1 md:-skew-x-2 md:border-b-[12px] md:border-r-[12px] text-sm md:text-xs
+      max-h-[calc(100vh-104px)] md:max-h-[calc(100vh-112px)] md:max-w-[640px]
+      transition-all ease-in-out duration-500 relative overflow-y-scroll w-full border border-gray-100/[8%] rounded-md text-sm md:text-xs
       ${width}
     `}>
       <div 
