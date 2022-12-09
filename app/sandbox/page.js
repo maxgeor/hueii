@@ -104,7 +104,7 @@ export default function SandboxPage() {
   ];
 
   return (
-    <div className='max-w-[1030px] relative md:flex md:justify-between gap-x-6 w-full px-6 pt-4 mx-auto bg-transparent'>
+    <div className='max-w-[1050px] relative md:flex md:justify-between gap-x-6 w-full px-6 pt-4 mx-auto bg-transparent'>
       <section className={`
         md:w-1/3 
         bg-black/90 backdrop-blur  flex flex-col shadow-xl md:shadow-none absolute md:static top-1.5 bottom-1.5 left-1.5 right-1.5 z-20 -ml-1 p-6 md:pt-2.5 md:h-auto rounded-xl md:rounded-none border border-white/[15%] md:border-none

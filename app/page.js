@@ -17,7 +17,6 @@ export default function Page() {
                 Start designing
               </button>
             </Link>
-            <p className="text-gray-500 text-sm">or <a href="#" className="ml-0.5 underline-offset-4 hover:underline text-white">Sign In</a></p>
           </div>
         </section>
         <section>

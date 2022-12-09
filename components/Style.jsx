@@ -15,11 +15,11 @@ export default function Style({
   italicized = false
 }) {
   return (
-    <div className={`relative -mb-1 flex flex-col items-start pt-3 md:pt-2 px-4 pb-4 md:pb-3`}>
+    <div className={`relative -mb-1 flex flex-col items-start gap-y-1 md:gap-0 pt-3 md:pt-2 px-4 pb-4 md:pb-3`}>
       <Tooltip.Provider delayDuration={400} skipDelayDuration={500}>
         <Tooltip.Root>
           <Tooltip.Trigger>
-            <h4 className={`cursor-help titlecase tracking-wideish text-gray-500 leading-7 md:leading-5 font-mono text-[13px] md:text-[11px]`}>
+            <h4 className={`cursor-help titlecase tracking-wideish text-gray-500 leading-5 font-mono text-[13px] md:text-[11px]`}>
               {name}
             </h4>
           </Tooltip.Trigger>

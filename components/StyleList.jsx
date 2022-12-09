@@ -1,5 +1,8 @@
+'use client'
+
 import Style from './Style';
 import StyleGroup from './StyleGroup';
+import * as Select from '@radix-ui/react-select';
 
 export default function StyleList({ styles, showPicker }) {
   const renderStyles = (styls) => {
