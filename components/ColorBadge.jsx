@@ -17,7 +17,7 @@ export default function ColorBadge({
         htmlFor='picker'
         style={styles}
         onClick={showPicker}
-        className={`${classes} border-white/[30%] h-5 w-5 hover:border-white focus:border-white hover:scale-[115%] focus:scale-[115%] focus:outline-none cursor-pointer transition ease-in-out duration-100`}
+        className={`${classes} border-white/[20%] h-6 w-6 md:h-5 md:w-5 hover:border-white focus:border-white hover:scale-[115%] focus:scale-[115%] focus:outline-none cursor-pointer transition ease-in-out duration-100`}
       ></button>
     )
   )

@@ -8,28 +8,13 @@ import { GroupIcon, CodeIcon, ArrowLeftIcon } from '@radix-ui/react-icons'
 import StyleList from '../../components/StyleList';
 import CodeEditor from '../../components/CodeEditor';
 import StyleEditorButton from '../../components/StyleEditorButton';
-import { SketchPicker } from 'react-color';
 
 export default function SandboxPage() {
-  const [picking, setPicking] = useState(false)
-  const [color, setColor] = useState('#fff')
-  const [changeColor, setChangeColor] = useState(null)
 
   const black = '#222237'
   const gray = '#B0B0CF'
   const green = '#63BB96';
   const teal = '#72BABB';
-
-  const handleShowPicker = (pickerColor, setPickerColor) => {
-    setChangeColor(setPickerColor)
-    setColor(pickerColor)
-    setPicking(true)
-  }
-
-  const handleChangeComplete = ({ hex }) => {
-    setColor(hex)
-    changeColor(hex)
-  };
 
   const [lightOrDark, setLightOrDark]           = useState('dark');
   const [background, setBackground]             = useState(black);
@@ -119,49 +104,18 @@ export default function SandboxPage() {
   ];
 
   return (
-    <div className={`
-      max-w-[1100px] h-screen relative md:flex md:justify-between gap-x-16 w-full md:px-6 pt-2 md:pt-4 mx-auto bg-transparent 
-    `}>
+    <div className='max-w-[1030px] relative md:flex md:justify-between gap-x-6 w-full px-6 pt-4 mx-auto bg-transparent'>
       <section className={`
-        md:w-1/3 lg:w-1/4
-        bg-black/90 backdrop-blur  h-screen flex shadow-xl md:shadow-none absolute md:relative bottom-1.5 left-1.5 right-1.5 z-20 pt-12 md:-ml-1 px-1 pb-4 md:p-0 md:pt-2.5 md:h-auto rounded-xl md:rounded-none border border-white/[15%] md:border-none
+        md:w-1/3 
+        bg-black/90 backdrop-blur  flex flex-col shadow-xl md:shadow-none absolute md:static top-1.5 bottom-1.5 left-1.5 right-1.5 z-20 -ml-1 p-6 md:pt-2.5 md:h-auto rounded-xl md:rounded-none border border-white/[15%] md:border-none
       `}>
-        <StyleList
-          styles={styles} 
-          showPicker={handleShowPicker}
-        />
-        <div className={`hidden flex flex-col gap-y-4 transform duration-[250ms] ease-in-out transition-all w-full`}>
-          <div className=' flex items-center justify-center '>
-            <StyleEditorButton
-              position={'top-0 -left-1'}
-              handleClick={() => setPicking(false)}
-            >
-              <ArrowLeftIcon /> 
-            </StyleEditorButton>
-            <div className='flex items-center gap-x-1.5'>
-              <span 
-                style={{ backgroundColor: color }}
-                className={`border border-white/[30%] h-5 w-5 rounded-full `}
-              ></span>
-              <div className='flex items-center w-16 text-sm leading-7 '>
-                <p className='font-light'>#</p>
-                <p className='tracking-wideish text-gray-100'>
-                  {color.replace('#', '').toUpperCase()}
-                </p>
-              </div>
-            </div>
-          </div>
-          <SketchPicker
-            color={color}
-            onChange={handleChangeComplete}
-          />
-        </div>
+        <StyleList styles={styles} />
       </section>
       <CodeEditor 
         theme={theme}
         background={background}
         foreground={foreground}
-        width='md:w-2/3 lg:w-3/4'
+        classes='md:w-2/3'
       />
     </div>
   );

@@ -33,8 +33,11 @@ export default function StyleList({ styles, showPicker }) {
   }
 
   return (
-    <div className='max-w-[245px] h-screen overflow-y-scroll w-full md:max-h-[calc(100%-112px)] flex flex-col gap-y-12'>
-      {renderStyles(styles)}
+    <div className='relative h-screen overflow-y-scroll w-full flex flex-col md:max-h-[calc(100%-71px)]'>
+      <div className="flex flex-col gap-12 md:max-w-[238px]">
+        {renderStyles(styles)}
+      </div>
+      <div className='sticky bottom-0 w-full p-12 bg-gradient-to-t from-black via-black/99 to-transparent z-10'></div>
     </div>
   )
 }

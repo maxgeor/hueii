@@ -12,10 +12,10 @@ export default function StyleGroup({
 }) {
   const [open, setOpen] = useState(false);
 
-  const StyleList = ({ children: c }) => (
+  const Styles = ({ children: c }) => (
     <section className={`
-      flex flex-col border-gray-800/[99%]
-      ${isSubgroup ? 'pl-2 ml-4 border-box border-l' : 'md:pl-2 ml-px md:border-l'}
+      flex flex-col border-gray-800
+      ${isSubgroup ? 'pl-2 ml-4 border-box border-l' : 'pl-2 ml-px border-l'}
     `}>
       {c}
     </section>
@@ -32,7 +32,7 @@ export default function StyleGroup({
             className={`
               group flex justify-between items-center w-full rounded-full transition ease-in-out duration-100
               text-white hover:text-white focus:text-white md:bg-black hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-700 border border-transparent focus:border-gray-600 h-10 border-box focus:outline-none
-              py-2.5 px-4 -ml-px
+              px-4 -ml-px my-1 md:my-0
             `}
             onClick={() => setOpen(!open)}
           >
@@ -50,19 +50,19 @@ export default function StyleGroup({
               <ChevronDownIcon className={`${open ? '-rotate-180 translate-y-px' : 'rotate-0'} transform shrink-0 -mt-px transition ease-out duration-500`} />
             </div>
           </button>
-          {open ? <StyleList>{children}</StyleList> : null}
+          {open ? <Styles>{children}</Styles> : null}
         </div>
       ) : (
         <>
-          <div className='flex items-center gap-x-[10px] ml-4 md:-ml-px'>
-            {icon}
-            <h3 className='text-base md:text-sm text-white leading-4 uppercase tracking-widest whitespace-nowrap ml-px'>
-              {name}
-            </h3>
-          </div>
-          <div className='mt-4'>
-            <StyleList>{children}</StyleList>
-          </div>
+        <div className='flex items-center gap-x-[10px] -ml-px'>
+          {icon}
+          <h3 className='text-base md:text-sm text-white leading-4 uppercase tracking-widest whitespace-nowrap ml-px'>
+            {name}
+          </h3>
+        </div>
+        <div className='mt-5 md:mt-4'>
+          <Styles>{children}</Styles>
+        </div>
         </>
       )}
     </div>

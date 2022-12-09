@@ -6,14 +6,14 @@ export default function Page() {
   const maxWidth = 'max-w-4xl mx-auto';
 
   return (
-    <div className="bg-[#090a36] min-h-screen">
+    <div className="bg-black min-h-screen">
       <Navbar maxWidth={maxWidth} />
       <div className="flex flex-col items-center gap-y-12 mb-6 ">
         <section className={`${maxWidth} flex flex-col items-center gap-y-10 max-w-lg mx-auto`}>
           <h1 className='text-5xl font-semibold text-center'>Create VSCode themes, fuss-free</h1>
           <div className="flex flex-col items-center gap-y-3">
             <Link href='/sandbox'>
-              <button className='w-fit rounded-full bg-white text-black transition duration-75 transform hover:scale-[102%] active:scale-100 text-md px-6 py-2 font-medium'>
+              <button className='w-fit rounded-full bg-white text-black transition duration-75 transform hover:scale-[102%] active:scale-100 text-md px-6 py-2'>
                 Start designing
               </button>
             </Link>

@@ -20,13 +20,11 @@ export default function SandboxLayout({ children }) {
             <a href='#' className='text-white hover:underline underline-offset-4'>Sign up</a> to save your theme
           </p>
           <div className='flex items-center gap-x-3'>
-            <div className='flex items-center h-12'>
-              <button className='transition duration-75 transform hover:scale-[102%] active:scale-100 flex gap-x-2 items-center bg-white text-black font-medium rounded-full px-5 py-2 text-sm'>
-                <UploadIcon />
-                <span>Export</span>
-              </button>
-            </div>
-            <QuestionMarkCircledIcon className='text-gray-400 hover:text-white' />
+            <button className='transition duration-75 transform hover:scale-[102%] active:scale-100 flex gap-x-2 items-center bg-white text-black rounded-full px-5 py-2 text-sm'>
+              <UploadIcon />
+              <span>Export</span>
+            </button>
+            {/* <QuestionMarkCircledIcon className='text-gray-400 hover:text-white' /> */}
           </div>
         </div>
       </header>
