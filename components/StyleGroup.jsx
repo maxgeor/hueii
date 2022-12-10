@@ -54,13 +54,13 @@ export default function StyleGroup({
         </div>
       ) : (
         <>
-        <div className='flex items-center gap-x-[10px] -ml-px'>
+        <div className='h-8 flex items-center gap-x-[10px] -ml-px'>
           {icon}
-          <h3 className='text-base md:text-sm text-white leading-4 uppercase tracking-widest whitespace-nowrap ml-px'>
+          <h3 className='text-base md:text-sm text-white leading-8 uppercase tracking-widest whitespace-nowrap ml-px'>
             {name}
           </h3>
         </div>
-        <div className='mt-5 md:mt-4'>
+        <div className='mt-3 md:mt-2'>
           <Styles>{children}</Styles>
         </div>
         </>

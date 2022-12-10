@@ -1,7 +1,6 @@
 'use client'
 
 import ColorField from './ColorField'
-import FontFields from './FontFields';
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons'
 import * as Tooltip from '@radix-ui/react-tooltip';
 
@@ -9,10 +8,7 @@ export default function Style({
   name,
   color, 
   setColor,
-  showPicker,
-  fontable = false, 
-  bolded = true, 
-  italicized = false
+  showPicker
 }) {
   return (
     <div className={`relative -mb-1 flex flex-col items-start gap-y-1 md:gap-0 pt-3 md:pt-2 px-4 pb-4 md:pb-3`}>
@@ -30,10 +26,7 @@ export default function Style({
           </Tooltip.Content>
         </Tooltip.Root>
       </Tooltip.Provider>
-      <div className='flex flex-wrap items-center md:w-full md:justify-between gap-2'>
-        <ColorField color={color} setColor={setColor} showPicker={showPicker} />
-        {/* {fontable ? <FontFields bolded={bolded} italicized={italicized} /> : null} */}
-      </div>
+      <ColorField color={color} setColor={setColor} showPicker={showPicker} />
     </div>
   )
 }

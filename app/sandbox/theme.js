@@ -20,7 +20,7 @@ const [variableName, setVariableNamet]        = useState('#0080ff');
 const [string, setString]                     = useState('#5c6166');
 const [number, setNumber]                     = useState('#5c6166');
 const [bool, setBool]                         = useState('#5c6166');
-const [nully, setNully]                       = useState('#5c6166');
+const [nullish, setNullish]                       = useState('#5c6166');
 const [keyword, setKeyword]                   = useState('#5c6166');
 const [operator, setOperator]                 = useState('#5c6166');
 const [className, setClassName]               = useState('#5c6166');
@@ -48,7 +48,7 @@ const theme = createTheme({
     { tag: [t.string, t.special(t.brace)], color: string },
     { tag: t.number, color: number },
     { tag: t.bool, color: bool },
-    { tag: t.null, color: nully },
+    { tag: t.null, color: nullish },
     { tag: t.keyword, color: keyword },
     { tag: t.operator, color: operator },
     { tag: t.className, color: className },
@@ -79,7 +79,7 @@ const styles = [
       { name: 'String', color: string, setColor: setString },
       { name: 'Number', color: number, setColor: setNumber },
       { name: 'Bool', color: bool, setColor: setBool },
-      { name: 'Null', color: nully, setColor: setNully },
+      { name: 'Null', color: nullish, setColor: setNullish },
     ] },
     { name: 'Keyword', color: keyword, setColor: setKeyword },
     { name: 'Operator', color: operator, setColor: setOperator },

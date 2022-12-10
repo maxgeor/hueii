@@ -1,13 +1,14 @@
-import Navbar from "../components/navbar"
-import Footer from "../components/footer"
 import Link from "next/link";
+import Logo from "../components/Logo";
 
 export default function Page() {
   const maxWidth = 'max-w-4xl mx-auto';
 
   return (
-    <div className="bg-black min-h-screen">
-      <Navbar maxWidth={maxWidth} />
+    <div className="bg-black min-h-screen flex flex-col items-center">
+      <div className="p-6">
+        <Logo classes='h-[96px] w-[96px]' />
+      </div>
       <div className="flex flex-col items-center gap-y-12 mb-6 ">
         <section className={`${maxWidth} flex flex-col items-center gap-y-10 max-w-lg mx-auto`}>
           <h1 className='text-5xl font-semibold text-center'>Create VSCode themes, fuss-free</h1>
@@ -27,7 +28,6 @@ export default function Page() {
           </div>
         </section>
       </div>
-      <Footer maxWidth={maxWidth} />
     </div>
   )
 }

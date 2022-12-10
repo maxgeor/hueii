@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react'
+import { BlockPicker } from 'react-color';
 import ColorBadge from './ColorBadge'
 import ColorPicker from './ColorPicker'
 // import ColorPicker from './components/ColorPicker';
@@ -28,7 +29,8 @@ export default function ColorField({ color: colorProp, setColor: setColorProp, s
           className='text-gray-200  group-hover:text-white pl-0.5 w-fit text-base md:text-sm leading-8 md:leading-7 tracking-wideish bg-inherit rounded-r-full focus:outline-none'
         />
       </div>
-      <ColorPicker color={color}  />
+      {/* <ColorPicker color={color}  /> */}
+      <BlockPicker color={color} />
     </div>
   )
 }
